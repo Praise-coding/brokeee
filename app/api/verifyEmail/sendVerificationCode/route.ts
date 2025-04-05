@@ -23,7 +23,7 @@ export async function POST(request: Request) {
         const minAddedToCreatedTime = addMinutes(createdDate, 5)
         const expiryDate = minAddedToCreatedTime.toISOString().slice(0, 19).replace("T", " ");
 
-        const [queryResults]: [unknown, unknown] = await mysqlConnection.execute("select * from userverification where userid = ?", [user?.userid])
+        const [queryResults]: [unknown, unknown] = await mysqlConnection.execute("select * from UserVerification where userid = ?", [user?.userid])
         const valueExists = queryResults as []
         if (valueExists?.length > 0) {
             await mysqlConnection.execute("update UserVerification set email= ?, verification_code= ?, createdAt= ?, expiryDate = ? where userid = ?", [user?.Email, randomNumber, createdDate.toISOString().slice(0, 19).replace("T", " "), expiryDate, user?.userid])

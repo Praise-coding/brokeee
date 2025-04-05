@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     try {
         const userRequest = await request.json()
         const user = (await auth())?.user.UserInfo
-        const [sqlQueryResult]: [unknown, unknown] = await mysqlConnection.execute("select * from userverification join user on user.userid = userverification.userid where user.userid = ?", [user?.userid]);
+        const [sqlQueryResult]: [unknown, unknown] = await mysqlConnection.execute("select * from UserVerification join user on user.userid = UserVerification.userid where user.userid = ?", [user?.userid]);
         const queryResult = sqlQueryResult as (UserVerification & User)[]
         const expiryDate = new Date(queryResult[0]?.expiryDate + "Z");
         const currentDate = new Date(userRequest?.createdAt)
@@ -21,8 +21,8 @@ export async function POST(request: Request) {
                 message: "Incorrect Code"
             }, {status: 400})
         }
-        await mysqlConnection.execute("update user set emailVerified = ? where userid = ? ", ["verified", user?.userid])
-        await mysqlConnection.execute("delete from userverification where userid = ?", [user?.userid])
+        await mysqlConnection.execute("update User set emailVerified = ? where userid = ? ", ["verified", user?.userid])
+        await mysqlConnection.execute("delete from UserVerification where userid = ?", [user?.userid])
         await SendEmail(`Someone just verified their email. \n
 Email: ${user?.["Email"]}`, "okormorupraisecode@gmail.com", "Email verified")
         return NextResponse.json({
