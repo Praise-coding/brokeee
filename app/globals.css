@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-@config "C:\Users\Okormoru praise\Documents\Projects\BrokerIs\tailwind.config.js";
+@config "../tailwind.config.js";
 
 select, input:focus {
     outline: none;
