@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+@config "C:\Users\Okormoru praise\Documents\Projects\BrokerIs\tailwind.config.js";
+
+select, input:focus {
+    outline: none;
+
+}
+
+body {
+
+}
+
+* {
+    scrollbar-width: none;
+}
+
