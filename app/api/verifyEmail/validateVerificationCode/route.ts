@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     try {
         const userRequest = await request.json()
         const user = (await auth())?.user.UserInfo
-        const [sqlQueryResult]: [unknown, unknown] = await mysqlConnection.execute("select * from UserVerification join user on user.userid = UserVerification.userid where user.userid = ?", [user?.userid]);
+        const [sqlQueryResult]: [unknown, unknown] = await mysqlConnection.execute("select * from UserVerification join User on User.userid = UserVerification.userid where User.userid = ?", [user?.userid]);
         const queryResult = sqlQueryResult as (UserVerification & User)[]
         const expiryDate = new Date(queryResult[0]?.expiryDate + "Z");
         const currentDate = new Date(userRequest?.createdAt)
