@@ -22,7 +22,7 @@ export async function POST(request: Request) {
             newHashedPassword, userInput["Email"], userInput["timezone"], userInput["Phone Number"]
         ]
 
-       const e =  await mysqlConnection.execute(`
+        await mysqlConnection.execute(`
            insert into User(FirstName, LastName, Country, userPassword, Email, timezone, PhoneNumber, DateJoined)
            values (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);
        `, sqlNeededData);
