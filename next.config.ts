@@ -10,6 +10,36 @@ const nextConfig: NextConfig = {
                 port: '',
                 search: '',
             },
+            {
+                protocol: 'https',
+                hostname: 'blog.millionero.com',
+                port: '',
+                search: '',
+            },
+            {
+                protocol: 'https',
+                hostname: '"academy.education.investing.com',
+                port: '',
+                search: '',
+            },
+            {
+                protocol: 'https',
+                hostname: 'static.vecteezy.com',
+                port: '',
+                search: '',
+            },{
+                protocol: 'https',
+                hostname: 'qjwmnqxjncnbdtxcvsdd.supabase.co',
+                port: '',
+                search: '',
+            },
+            {
+                protocol: 'https',
+                hostname: 'blog.millionero.com',
+                port: '',
+                search: '',
+            },
+
         ]
     }
 

@@ -12,7 +12,7 @@ async function Page() {
     const transactionArray = userdata?.user?.UserTransactions
 
     return (
-        <div>
+        <div className={"h-screen"}>
             <Transaction timezone={userdata?.user?.UserInfo?.Timezone} arrayOfData={transactionArray}
                          sectionName={"All Transaction"}/>
         </div>

@@ -26,7 +26,7 @@ function SecondLayout({children}: { children: React.ReactNode }) {
                                     <Sidebar sidebarOpen={sidebarOpen}/>
                                 </div>
                                 <div
-                                    className={"bg-[#31353F] relative  overflow-scroll  flex-1"}>
+                                    className={"bg-[#31353F] relative h-screen overflow-scroll  flex-1"}>
                                     <PopUp>
 
                                         <div
