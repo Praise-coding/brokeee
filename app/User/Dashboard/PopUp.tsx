@@ -26,7 +26,7 @@ export default function PopUp({children}: { children: React.ReactNode }) {
 
                         className="whitespace-nowrap text-center font-poppins animate-scroll text-lg font-medium"
                     >
-                        {notification}
+                        Submit your ID to verify your account
                     </div>
                 </div>
             }
