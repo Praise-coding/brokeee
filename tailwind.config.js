@@ -13,7 +13,8 @@ module.exports = {
                 poppins: ["var(--font-poppins)"],
                 inter: ["var(--font-inter)"],
                 montserrat: ["var(--font-montserrat)"],
-                montserrat2: ["var(--font-montserrat)"]
+                montserrat2: ["var(--font-montserrat)"],
+                alexandria: ["var(--font-alex)"]
             }
         },
     },

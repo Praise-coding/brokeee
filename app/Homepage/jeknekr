@@ -1,0 +1,22 @@
+/* © 2025. All rights reserved. */
+
+margin: 0 auto;
+width: 159px;
+height: 15px;
+
+/* Caption */
+font-family: 'Alexandria';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+
+/* Gray 1 */
+color: #999999;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;

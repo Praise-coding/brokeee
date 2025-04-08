@@ -1,8 +1,9 @@
+import Homepage from "./Homepage/Homepage";
 
 export default function Page() {
     return (
-        <div>
-        ejejk
-        </div>
+        <main className="bg-[black] h-screen overflow-scroll">
+            <Homepage />
+        </main>
     );
 }
