@@ -28,7 +28,7 @@ function CommonQuestions() {
                 </div>
                 <div className='mt-[32px] sm:mt-[72px] max-w-[792px] w-full justify-self-center grid gap-[16px] sm:gap-[30px] grid-cols-1'>
 
-                    {Array(5).fill(null).map((data, key) => {
+                    {Array(5).fill(null).map((_, key) => {
                         return (
                             <div key={key} className='border cursor-pointer flex items-center justify-between border-[#2E2E2E] py-[16px] px-[20px]'>
                                 <div className='font-alexandria text-[#E5E5E5]'>

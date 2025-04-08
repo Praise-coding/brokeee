@@ -1,6 +1,5 @@
-import Image from 'next/image'
 import React from 'react'
-import pic from "./images/Ellipse 28 (1).svg"
+
 export default function FutureBreakdown() {
     return (
         <div className='mx-[20px] flex justify-center relative py-[40px] sm:py-[80px]'>
@@ -29,7 +28,7 @@ export default function FutureBreakdown() {
                     </div>
                 </div>
                 <div className='grid mt-[32px] sm:mt-[80px] grid-cols-1 sm:grid-cols-3 gap-[16px] sm:gap-[24px]'>
-                    {Array.from({ length: 3 }).map((data, key) => {
+                    {Array.from({ length: 3 }).map((_, key) => {
                         return (
                             <div key={key} style={{ boxSizing: "border-box" }} className='sm:py-[48px] cursor-pointer relative z-[20] py-[30px] border border-[grey] px-[24px] sm:px-[36px] bg-[#ffffff0a]  rounded-[12px] '>
                                 <svg className='justify-self-center' width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">

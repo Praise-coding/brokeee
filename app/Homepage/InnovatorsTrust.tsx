@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import pic from "./images/cyberpunk-2077-ps4-4k-wallpaper-5.jpg"
-export default function () {
+export default function InnovatorsTrust() {
     return (
         <div className='bg-[#0F0F0F] sm:pb-[80px] relative'>
             <div className='flex justify-center absolute top-0 left-0 w-full'>
@@ -27,7 +27,7 @@ export default function () {
                 </div>
                 <div className='w-full overflow-scroll mt-[32px]'>
                     <div className='sm:hidden flex  justify-between w-[500%]  relative   sm:-left-[135.5px]'>
-                        {Array.from({ length: 5 }).map((data, key) => {
+                        {Array.from({ length: 5 }).map((_, key) => {
                             return (
                                 <div className='w-full flex justify-center' key={key}>
                                     <div style={{ boxSizing: "border-box" }}  className='bg-black  rounded-[16px] border border-[grey] w-[90%] p-[32px] backdrop-blur-[4.59122px] sm:min-w-[373px]  sm:w-full h-[204px]'>
@@ -60,7 +60,7 @@ export default function () {
 
 
             <div className='hidden sm:flex gap-[20px] relative sm:-left-[135.5px]'>
-                {Array.from({ length: 5 }).map((data, key) => {
+                {Array.from({ length: 5 }).map((_, key) => {
                     return (
                         <div style={{ boxSizing: "border-box" }} key={key} className='bg-black mx-[20px] rounded-[16px] border border-[grey] p-[32px] backdrop-blur-[4.59122px] sm:min-w-[373px] w-full h-[204px]'>
                             <div className='font-alexandria text-[#EDEDF2] leading-[20px]'>
@@ -84,7 +84,7 @@ export default function () {
                 })}
             </div>
             <div className='hidden sm:flex gap-[20px]  mt-[20px] relative left-[-332px]'>
-                {Array.from({ length: 5 }).map((data, key) => {
+                {Array.from({ length: 5 }).map((_, key) => {
                     return (
                         <div style={{ boxSizing: "border-box" }} key={key} className='bg-black  rounded-[16px] border border-[grey] p-[32px] backdrop-blur-[4.59122px] min-w-[373px] w-full h-[204px]'>
                             <div className='font-alexandria text-[#EDEDF2] leading-[20px]'>

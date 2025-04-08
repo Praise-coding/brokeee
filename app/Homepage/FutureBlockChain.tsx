@@ -30,7 +30,7 @@ export default function FutureBlockChain() {
                         <Image src={pic} alt='' className='max-w-[506px]w-full' />
                     </div>
                     <div className='max-w-[622px] grid grid-cols-1 gap-[16px] sm:gap-[40px] w-full'>
-                        {Array.from({ length: 3 }).map((data, key) => {
+                        {Array.from({ length: 3 }).map((_, key) => {
                             return (
                                 <div key={key} className='bg-[#0F0F0F] flex gap-[20px] sm:gap-[24px] py-[24px] sm:py-[30px] px-[20px] border-[grey] border rounded-[20px] w-full '>
                                     <div>
