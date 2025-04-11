@@ -24,7 +24,8 @@ const TradingViewWidget: React.FC = () => {
   const widgetContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (widgetContainerRef.current && !widgetContainerRef.current.querySelector('script')) {
+    const widgetContainerReff = widgetContainerRef.current
+    if (widgetContainerReff && !widgetContainerReff.querySelector('script')) {
       const script = document.createElement('script');
       script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js';
       script.async = true;
@@ -93,15 +94,15 @@ const TradingViewWidget: React.FC = () => {
       script.innerHTML = JSON.stringify(config);
 
       // Append the script to the container
-      if (widgetContainerRef.current) {
-        widgetContainerRef.current.appendChild(script);
+      if (widgetContainerReff) {
+        widgetContainerReff.appendChild(script);
       }
     }
 
     // Cleanup function to remove the script when the component unmounts
     return () => {
-      if (widgetContainerRef.current) {
-        const scripts = widgetContainerRef.current.querySelectorAll('script');
+      if (widgetContainerReff) {
+        const scripts = widgetContainerReff.querySelectorAll('script');
         scripts.forEach(script => script.remove());
       }
     };

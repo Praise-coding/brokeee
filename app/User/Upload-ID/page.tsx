@@ -51,7 +51,7 @@ function Page() {
         <>
             {loading && <Loading/>}
             <div className={"h-screen"}>
-                <div className="bg-[#1B2028] mt-[20px]   rounded-[15px] py-[20px] sm:py-[50px] px-[15px] sm:px-[31px]">
+                <div className="bg-[#1B2028] mt-[20px]   rounded-[8px] p-[20px]">
                     <label htmlFor="fileTaker"
                            className="w-full  cursor-pointer bg-[rgba(0,0,0,0.1)] flex items-center justify-center h-[174px] rounded-[8px] border-opacity-[50%] border-[#9E9E9E] border sm:border-[1.3px] ">
                         <div className={"relative"}>
@@ -82,7 +82,7 @@ function Page() {
                 </div>
                 <div onClick={() => sendImage()}>
                     <button
-                        className="bg-[#5570F1] mt-[20px] cursor-pointer font-poppins text-[14px] text-white w-full rounded-[12px] h-[47px]">
+                        className="bg-[#5570F1] mt-[20px] cursor-pointer font-poppins text-[14px] text-white w-full rounded-[8px] h-[47px]">
                         Submit
                     </button>
                 </div>

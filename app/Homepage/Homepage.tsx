@@ -10,24 +10,24 @@ import NavBar from "./NavBar";
 import Partners from "./Partners";
 import Revolutionary from "./Revolutionary";
 
-export default function Homepage(){
-    return(
+export default function Homepage() {
+    return (
         <main className="overflow-x-hidden">
-            <TradingViewChart/>
-            <NavBar/>
-            <LandingPage/>
-            <Partners/>
-            <FutureBreakdown/>
+            <TradingViewChart />
+            <NavBar />
+            <LandingPage />
+            <Partners />
+            <FutureBreakdown />
 
-            <LeverageProducts/>
-            <FutureBlockChain/>
-            <InnovatorsTrust/>
-            
-          
-      
-            <CommonQuestions/>
-            <Revolutionary/>
-            <Footer/>
+            <LeverageProducts />
+            <FutureBlockChain />
+            <InnovatorsTrust />
+
+
+
+            <CommonQuestions />
+            <Revolutionary />
+            <Footer />
         </main>
     )
 }

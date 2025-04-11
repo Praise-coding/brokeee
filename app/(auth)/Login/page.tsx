@@ -19,6 +19,7 @@ export default function Page() {
         }
     })
 
+
     async function submitForm(data: SignupFormInput) {
         setLoading(true)
         const response = (await SignIn(data))

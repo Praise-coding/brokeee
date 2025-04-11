@@ -36,7 +36,7 @@ export function CurrentCryptoPriceCards({title, price}: { title: string, price: 
     return (
         <div className={"flex items-center"}>
             <div>
-                <div className="p-[9px]  flex items-center justify-center bg-[#31353F] rounded-[10px]">
+                <div className="p-[9px]  flex items-center justify-center bg-[#31353F] rounded-[8px]">
                     <Icons name={title}/>
                 </div>
 

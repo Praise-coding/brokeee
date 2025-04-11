@@ -3,7 +3,6 @@ import React, {useState} from 'react'
 import {Icons} from "@/app/User/Deposit/Icons";
 import {usePathname} from "next/navigation";
 
-
 function DepositWalletAddressAndBalanceCards({cardName, balanceOrWalletAddress, amOrAdd, copy}: {
     cardName: string,
     copy?: boolean,
@@ -21,9 +20,9 @@ function DepositWalletAddressAndBalanceCards({cardName, balanceOrWalletAddress, 
 
     const path = usePathname()
     return (
-        <div className={""}>
+        <div>
             <div
-                className={"bg-[#1B2028] group  flex overflow-hidden rounded-[15px] relative py-[12px] sm:py-[20.5px] sm:px-[30px] px-[15px]"}>
+                className={"bg-[#1B2028] group  flex overflow-hidden rounded-[8px] relative py-[12px] sm:py-[20.5px] sm:px-[30px] px-[15px]"}>
                 {copy && <div onMouseLeave={() => setCopyTextMessage("Copy")} onClick={() => copyAddress()}
                               className=" h-full  w-full top-[50px] duration-300 cursor-pointer group-hover:top-[0px]  group-hover:z-20  z-[-1] group-hover:opacity-[100%] opacity-[0%] transition-all absolute left-0 bg-[#1B2028]  flex items-center justify-center">
                     <div className={"w-fit font-poppins text-white font-[18px]"}>
@@ -34,7 +33,7 @@ function DepositWalletAddressAndBalanceCards({cardName, balanceOrWalletAddress, 
                 <div className={"flex items-center  w-full"}>
                     <div className="">
                         <div
-                            className="sm:p-[9px] p-[6px]  flex items-center justify-center bg-[#31353F] rounded-[10px]">
+                            className="sm:p-[9px] p-[6px]  flex items-center justify-center bg-[#31353F] rounded-[4px]">
                             <Icons name={cardName}/>
                         </div>
 

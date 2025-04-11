@@ -16,8 +16,9 @@ const TradingViewWidget: React.FC = () => {
   const widgetContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const widgetContainerReff = widgetContainerRef.current
     // Only run if the widgetContainerRef is available
-    if (widgetContainerRef.current && !widgetContainerRef.current.querySelector('script')) {
+    if (widgetContainerReff && !widgetContainerReff.querySelector('script')) {
       const script = document.createElement('script');
       script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
       script.async = true;
@@ -40,13 +41,13 @@ const TradingViewWidget: React.FC = () => {
 
       script.innerHTML = JSON.stringify(config);
 
-      widgetContainerRef.current.appendChild(script);
+      widgetContainerReff.appendChild(script);
     }
 
     // Cleanup function to remove the script when the component unmounts
     return () => {
-      if (widgetContainerRef.current) {
-        const scripts = widgetContainerRef.current.querySelectorAll('script');
+      if (widgetContainerReff) {
+        const scripts = widgetContainerReff.querySelectorAll('script');
         scripts.forEach(script => script.remove());
       }
     };

@@ -13,16 +13,15 @@ interface AuthError extends Error {
 
 export const SignIn = async (data: SignupFormInput) => {
     try {
-        await signIn("credentials", {
+        const response= (await signIn("credentials", {
             ...data,
             redirect: false, // ✅ Prevent auto redirect to handle error manually
-        });
+        }));
+        console.log(response + "2898928")
 
 
     } catch (err: unknown) {
-
         const error = err as AuthError;
-
         return {error: error.cause.server_message}
     }
 }

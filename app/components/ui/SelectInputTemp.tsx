@@ -11,11 +11,11 @@ export default function SelectTemp({inputName, options, selectionType, defaultVa
 }) {
     return (
         <div
-            className="w-full  text-[#ABAFB1]  bg-[rgba(0,0,0,0.1)] font-poppins h-[50px] sm:h-[52px] rounded-[8px] px-[16px]  border-[rgba(255,255,255,0.7)] border text-[14px] sm:text-[16px] md:border-[1.3px] ">
+            className="w-full  text-[#ABAFB1]  bg-[rgba(0,0,0,0.1)] font-poppins h-[50px] sm:h-[52px] rounded-md px-[16px]  border-[rgba(255,255,255,0.7)] border text-[14px] sm:text-[16px] md:border-[1.3px] ">
             <select
                 {...inputChange(inputName)}
                 defaultValue={defaultValue ? defaultValue : undefined}
-                className="w-full h-full cursor-pointer text-[#ABAFB1]  rounded-[8px]  bg-transparent">
+                className="w-full h-full cursor-pointer text-[#ABAFB1]  rounded-md  bg-transparent">
                 <option disabled>Choose a {selectionType ? selectionType + " method" : selectionType} </option>
                 {options.map((options, key) => (
                     <option key={key} className={"cursor-pointer"}>

@@ -38,7 +38,7 @@ export const fetchDataForUser = async (credentials: unknown) => {
         };
 
         return allUserInfo;
-    } catch (err) {
-        throw err;
+    } catch{
+        return null
     }
 };

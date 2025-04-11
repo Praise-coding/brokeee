@@ -1,9 +1,10 @@
 "use client"
 import React from 'react';
-
+import {motion} from "framer-motion"
 function Loading() {
     return (
-        <div style={{background: "linear-gradient(to left, #31353F 50%, #1B2028 50%)"}}
+        <motion.div
+            style={{background: "linear-gradient(to left, #31353F 50%, #1B2028 50%)"}}
              className={"w-full z-[400] h-screen fixed top-0 left-0 flex absolute items-center justify-center"}>
             <div role="status">
                 <svg aria-hidden="true"
@@ -18,7 +19,7 @@ function Loading() {
                 </svg>
                 <span className="sr-only">Loading...</span>
             </div>
-        </div>
+        </motion.div>
 
     );
 }

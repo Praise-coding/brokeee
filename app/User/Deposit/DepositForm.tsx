@@ -50,7 +50,7 @@ function DepositForm() {
             <form onSubmit={async (e) => {
                 e.preventDefault()
                 await formSubmitter()
-            }} className="grid gap-[20px] sm:gap-[30px]">
+            }} className="grid gap-[20px] sm:gap-[20px]">
                 <InputTemp
                     type={"number"}
                     errors={errors}
@@ -61,7 +61,7 @@ function DepositForm() {
                             options={options}
                             inputChange={register}/>
                 <label htmlFor="fileTaker"
-                       className="w-full bg-[rgba(0,0,0,0.1)] flex items-center justify-center h-[174px] rounded-[8px] border-opacity-[50%] border-[#9E9E9E] border sm:border-[1.3px] ">
+                       className="w-full bg-[rgba(0,0,0,0.1)] cursor-pointer flex items-center justify-center h-[174px] rounded-md border-opacity-[50%] border-[#9E9E9E] border sm:border-[1.3px] ">
                     <div className={"relative"}>
                         <input accept=".jpg, .jpeg, .png" onChange={(image) => selectImage(image)} type="file"
                                id="fileTaker"
@@ -88,7 +88,7 @@ function DepositForm() {
                 </label>
                 <div>
                     <button
-                        className="bg-[#5570F1] cursor-pointer font-poppins text-[14px] text-white w-full rounded-[12px] h-[47px]">
+                        className="bg-[#5570F1] cursor-pointer font-poppins text-[14px] text-white w-full rounded-[8px] h-[47px]">
                         Submit
                     </button>
                 </div>

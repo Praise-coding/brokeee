@@ -1,12 +1,15 @@
+"use client"
+import {motion} from "framer-motion";
 import Link from "next/link";
 
-function SubscriptionCard({plan, minimumAmount, infoText }: {
+function SubscriptionCard({plan, minimumAmount, infoText}: {
     plan: string,
     minimumAmount: number,
-
     infoText: string
 }) {
+
     return (
+
         <div className={
             "bg-[#1B2028] relative rounded-[8px] py-[35px] px-[27px] w-full text-white"}
             // style={{height: plan == "GOLD" ? "300px" : undefined}}
@@ -43,12 +46,12 @@ function SubscriptionCard({plan, minimumAmount, infoText }: {
                 {/*    <input className={"w-full text-white placeholder:text-white"} placeholder={"Enter Amount"}/>*/}
                 {/*</div>*/}
                 <Link href={"/User/Social-Media"}
-                    className={"bg-white cursor-pointer mt-[17px] font-montserrat text-[14px] font-[700] leading-[28px] tracking-[0.2px] text-[#2D2D2D] rounded-[6px] w-full h-[44px] flex items-center justify-center"}>
+                      className={"bg-white cursor-pointer mt-[17px] font-montserrat text-[14px] font-[700] leading-[28px] tracking-[0.2px] text-[#2D2D2D] rounded-[6px] w-full h-[44px] flex items-center justify-center"}>
                     Contact Admin
                 </Link>
             </div>
 
-            <div className={"absolute opacity-40 right-0 top-0"}>
+            <motion.div  initial={{right: "0%", top:"0%"}} className={"absolute opacity-40"}>
                 <svg width="108" height="109" viewBox="0 0 108 109" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="56" y="55" width="54" height="54" rx="27" fill="#FDA14C" fillOpacity="0.5"/>
                     <rect x="1" y="55" width="54" height="54" rx="27" fill="#FDA14C" fillOpacity="0.5"/>
@@ -56,7 +59,7 @@ function SubscriptionCard({plan, minimumAmount, infoText }: {
                     <rect x="1" width="54" height="54" rx="27" fill="#DB0481" fillOpacity="0.5"/>
                 </svg>
 
-            </div>
+            </motion.div>
         </div>
     )
 }
