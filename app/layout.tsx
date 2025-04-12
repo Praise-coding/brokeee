@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import React from "react";
 import ChatBot from "@/app/ChatBot";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const poppins = Poppins({
     variable: "--font-poppins",
@@ -53,8 +53,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
+
                 className={`antialiased ${alexandria.variable} overflow-x-hidden overflow-y-scroll w-full ${poppins.variable} ${nunito.variable} ${montserrat.variable} ${inter.variable}`}>
-                <main className={"z-[9999999999999] relative"}>
+            <main className={"z-[9999999999999] relative"}>
                     <ToastContainer />
                 </main>
                 <main className={""}>
@@ -62,6 +63,7 @@ export default function RootLayout({
                         {children}
                     </ChatBot>
                 </main>
+            <SpeedInsights/>
             </body>
         </html>
     );
