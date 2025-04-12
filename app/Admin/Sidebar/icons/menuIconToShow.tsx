@@ -6,6 +6,7 @@ import LogoutMenuIcon from "@/app/Admin/Sidebar/icons/logoutMenuIcon";
 import DepositMenuIcon from "@/app/Admin/Sidebar/icons/depositMenuIcon";
 import WithdrawMenuIcon from "@/app/User/Sidebar/icons/withdrawMenuIcon";
 import SocialMediaMenuIcon from "@/app/Admin/Sidebar/icons/SocialMediaMenuIcon";
+import WalletMenuIcon from "@/app/User/Sidebar/icons/walletMenuIcon";
 
 function UsersMenuIcon({isPath}: { isPath: boolean | undefined }) {
     return <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,6 +22,9 @@ function MenuIconToShow({path, isPath}: { path: string, isPath?: boolean }) {
             return <TransactionMenuIcon isPath={isPath}/>
         case("Users"):
             return <UsersMenuIcon isPath={isPath}/>
+        case("Wallets"):
+            return <WalletMenuIcon isPath={isPath}/>
+
         case("Buy-Crypto"):
             return <BuycryptoMenuIcon isPath={isPath}/>
         case("Deposit"):

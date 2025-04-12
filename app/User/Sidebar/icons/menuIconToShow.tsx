@@ -9,6 +9,7 @@ import SettingsMenuIcon from "@/app/User/Sidebar/icons/settingsMenuIcon";
 import LogoutMenuIcon from "@/app/User/Sidebar/icons/logoutMenuIcon";
 import SocialMediaMenuIcon from "@/app/Admin/Sidebar/icons/SocialMediaMenuIcon";
 import UploadMenuIcon from "@/app/User/Sidebar/icons/uploadMenuIcon";
+import WalletMenuIcon from "@/app/User/Sidebar/icons/walletMenuIcon";
 
 
 function MenuIconToShow({path, isPath}: { path: string, isPath?: boolean }) {
@@ -27,6 +28,9 @@ function MenuIconToShow({path, isPath}: { path: string, isPath?: boolean }) {
             return <SubscriptionMenuIcon isPath={isPath}/>
         case("Social-Media"):
             return <SocialMediaMenuIcon isPath={isPath}/>
+        case("Wallets"):
+            return <WalletMenuIcon isPath={isPath}/>
+
         case("Settings"):
             return <SettingsMenuIcon isPath={isPath}/>
         case("Upload-ID"):

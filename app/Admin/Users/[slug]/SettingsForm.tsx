@@ -49,6 +49,8 @@ function SettingsForm({UserInfo, UserBalance, UserNotification}: {
         defaultValues: {
             "Deposited": balanceInfo?.Deposited,
             "Profit": balanceInfo?.Profit,
+            "Balance": balanceInfo?.Balance,
+
         }
     });
 
@@ -92,6 +94,51 @@ function SettingsForm({UserInfo, UserBalance, UserNotification}: {
     return (
         <>
             {loading ? <Loading/> : ""}
+            <form
+                onSubmit={async (event) => {
+                    event.preventDefault()
+                    await updateBalanceInfoFunction(setLoading, balanceHandler, data?.userid)
+                }
+                }
+                className="bg-[#1B2028] sm:mt-[] mt-[15px]  rounded-[15px] px-[15px] sm:px-[24px] py-[30px] sm:py-[46px]">
+                <div className={" font-[600] text-[30px] text-[#E4E4E4] font-poppins"}>
+                    Balance Info
+                </div>
+                <div
+                    className="grid mt-[30px] sm:gap-[30px]">
+                    <div className={"grid gap-x-[20px] sm:gap-x-[26px] sm:grid-cols-2 sm:gap-y-[30px] gap-y-[20px]"}>
+                        {["Deposited", "Profit", "Balance"].map((data, key) => {
+                            return (
+                                <div key={key}
+                                     className={"block  w-full"}>
+                                    <div className={"opacity-80 sm:block  " +
+                                        "text-[14px] text-[#ffffff] sm:text-base font-poppins " +
+                                        "font-light leading-[24px] "}>
+                                        {data}
+                                    </div>
+                                    <div className={"mt-[8px] sm:mt-[12px]"}>
+                                        <InputTemp
+                                            type={"number"}
+                                            inputName={data}
+                                            errors={balanceErrorHandler}
+                                            inputChange={balanceRegisterHandler}
+                                            placeholder={data}/>
+                                    </div>
+                                </div>
+                            )
+                        })
+
+                        }
+                    </div>
+                </div>
+                <button
+                    className={"bg-[#4182F9] cursor-pointer block -[14px]  items-center justify-center rounded-[8px] w-full   mt-[28px] h-[44px] "}>
+                            <span className={"font-poppins text-white leading-[24px]"}>
+                                    Save
+                            </span>
+                </button>
+            </form>
+
             <form
                 onSubmit={async (event) => {
                     event.preventDefault()
@@ -239,51 +286,6 @@ function SettingsForm({UserInfo, UserBalance, UserNotification}: {
                             </div>
                         </div>
 
-                    </div>
-                </div>
-                <button
-                    className={"bg-[#4182F9] cursor-pointer block -[14px]  items-center justify-center rounded-[8px] w-full   mt-[28px] h-[44px] "}>
-                            <span className={"font-poppins text-white leading-[24px]"}>
-                                    Save
-                            </span>
-                </button>
-            </form>
-            <form
-                onSubmit={async (event) => {
-                    event.preventDefault()
-
-                    await updateBalanceInfoFunction(setLoading, balanceHandler, data?.userid)
-                }
-                }
-                className="bg-[#1B2028] sm:mt-[] mt-[15px]  rounded-[15px] px-[15px] sm:px-[24px] py-[30px] sm:py-[46px]">
-                <div className={" font-[600] text-[30px] text-[#E4E4E4] font-poppins"}>
-                    Balance Info
-                </div>
-                <div
-                    className="grid mt-[30px] sm:gap-[30px]">
-                    <div className={"grid gap-x-[20px] sm:gap-x-[26px] sm:grid-cols-2 sm:gap-y-[30px] gap-y-[20px]"}>
-                        {["Deposited", "Profit"].map((data, key) => {
-                            return (
-                                <div key={key}
-                                     className={"block  w-full"}>
-                                    <div className={"opacity-80 sm:block  " +
-                                        "text-[14px] text-[#ffffff] sm:text-base font-poppins " +
-                                        "font-light leading-[24px] "}>
-                                        {data}
-                                    </div>
-                                    <div className={"mt-[8px] sm:mt-[12px]"}>
-                                        <InputTemp
-                                            type={"number"}
-                                            inputName={data}
-                                            errors={balanceErrorHandler}
-                                            inputChange={balanceRegisterHandler}
-                                            placeholder={data}/>
-                                    </div>
-                                </div>
-                            )
-                        })
-
-                        }
                     </div>
                 </div>
                 <button

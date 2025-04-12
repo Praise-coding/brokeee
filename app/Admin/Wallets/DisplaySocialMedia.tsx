@@ -1,20 +1,23 @@
 "use client"
 import React, {useEffect, useState} from 'react';
-import {socialMedia} from "@/app/Types";
 import InputTemp from "@/app/components/ui/InputTemp";
 import {useForm} from "react-hook-form";
 import {Toaster} from "@/app/(auth)/formUi/Toast";
 import {useRouter} from "next/navigation";
 import Loading from "@/app/User/loading";
-import {saveSocialMedia} from "@/app/Admin/Social-Media/saveStore";
-import {deleteSocialMedia} from "@/app/Admin/Social-Media/deleteStore";
+import {saveSocialMedia} from "./saveStore";
+import {deleteSocialMedia} from "./deleteStore";
 
-function DisplaySocialMedia({data}: { data: socialMedia }) {
+type Type = {
+    id: number,
+    walletType: string
+}
+
+function DisplaySocialMedia({data}: { data: Type }) {
     const {handleSubmit, setValue, register, formState: {errors}} = useForm()
     const [open, setOpen] = useState(false)
     useEffect(() => {
-        setValue("mediaName", data?.["mediaName"])
-        setValue("mediaUrl", data?.["mediaUrl"])
+        setValue("walletName", data?.["walletType"])
     }, [data, setValue]);
 
     async function deleteLink() {
@@ -55,7 +58,7 @@ function DisplaySocialMedia({data}: { data: socialMedia }) {
                 <div onClick={() => setOpen((prevState) => !prevState)}
                      style={{color: "rgba(255,255,255,0.76)"}}
                      className={"bg-[#1B2028] cursor-pointer w-full text-white font-poppins text-[18px] sm:text-[20px] py-[20px] text-center rounded-[10px]"}>
-                    {data?.["mediaName"]}
+                    {data?.["walletType"]}
                 </div>
                 <div style={{height: open ? "fit-content" : "0px"}}
                      className={`bg-[#1B2028] rounded-[10px] overflow-hidden block ${open ? "p-[20px] mt-[10px]" : ""}`}>
@@ -63,7 +66,7 @@ function DisplaySocialMedia({data}: { data: socialMedia }) {
                         e.preventDefault()
                         await saveLink()
                     }} className="grid gap-[20px] sm:gap-[20px]">
-                        <InputTemp placeholder={"Enter media Name"} inputName={"mediaName"} inputChange={register}
+                        <InputTemp placeholder={"Enter Wallet Name"} inputName={"walletName"} inputChange={register}
                                    errors={errors}/>
                         <div>
                             <button

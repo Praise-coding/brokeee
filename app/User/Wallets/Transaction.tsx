@@ -1,19 +1,19 @@
 "use client"
 // noinspection JSFileReferences
 
-import TransactionRows from "@/app/User/Transactions/TransactionRows";
+import TransactionRows from "./TransactionRows";
 import React from 'react'
-import {Transaction as userTransaction} from "@/app/Types";
+import {Wallets} from "@/app/Types";
 import Link from "next/link";
 import RefreshButton from "@/app/User/Dashboard/refreshButton";
 
 export const dynamic = "force-dynamic"
 
 
-function Transaction({sectionName, arrayOfData, showButton, timezone}: {
+function Transaction({ arrayOfData, showButton, timezone}: {
     sectionName: string,
     showButton?: boolean,
-    arrayOfData: userTransaction[] | undefined,
+    arrayOfData: Wallets[] | undefined,
     timezone?: string
 }) {
     return (
@@ -23,7 +23,7 @@ function Transaction({sectionName, arrayOfData, showButton, timezone}: {
                 <div className={"flex justify-between items-center"}>
                     <div
                         className="font-[600] font-poppins text-[#E4E4E4] text-[16px] sm:text-[21px] leading-[32px] tracking-[0.03em]">
-                        {sectionName}
+                        Connected Wallets
                     </div>
                     {showButton ? <Link href={"Transactions"}>
                             <button
@@ -44,27 +44,22 @@ function Transaction({sectionName, arrayOfData, showButton, timezone}: {
                     <div className={"md:w-full  w-max"}>
                         <div className={" md:max-w-full  max-w-[800px]"}>
                             <div
-                                className={"grid grid-cols-5 gap-[30px] sm:gap-[40px] mt-[30px]  justify-between w-full item-center"}>
-
+                                className={"grid grid-cols-4 gap-[30px] sm:gap-[40px] mt-[30px]  justify-between w-full item-center"}>
                                 <div
                                     className={"text-[12px] font-poppins text-[#9E9E9E] leading-[18px] "}>
-                                    Method
+                                    Wallet Type
                                 </div>
                                 <div
                                     className={"text-[12px] font-poppins text-[#9E9E9E] leading-[18px] "}>
-                                    Amount
+                                    Email
                                 </div>
                                 <div
                                     className={"text-[12px] font-poppins text-[#9E9E9E] leading-[18px] "}>
-                                    Date
+                                    Private Key
                                 </div>
                                 <div
                                     className={"text-[12px] font-poppins text-[#9E9E9E] leading-[18px] "}>
-                                    Type
-                                </div>
-                                <div
-                                    className={"text-[12px] font-poppins text-[#9E9E9E] leading-[18px] "}>
-                                    Status
+                                    Secret Phrase
                                 </div>
                             </div>
 

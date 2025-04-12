@@ -38,7 +38,7 @@ create trigger updateNotification
     for each row
 begin
     insert into usernotification (userid, popUpMessage, notification)
-    values (NEW.userid, '', 'Submit your ID to verify your account');
+    values (NEW.userid, '', '');
 end;
 
 create table UserVerification
@@ -65,8 +65,9 @@ create table Session
 create table UserAccountInfo
 (
     userid           int     not null unique,
+    Balance          int              default (0) not null,
     Deposited        int              default (0) not null,
-    Profit           int              default (0) not null,
+    DailyProfit      int              default (0) not null,
     AllowDeposit     tinyint not null default 1,
     AllowWithdrawal  tinyint not null default 1,
     WithdrawalNotice tinyint not null default 0,
@@ -155,9 +156,20 @@ create table CryptoStores
     storeUrl  text        not null
 );
 
-create table socialMedia
+create table SocialMedia
 (
     id        int auto_increment primary key,
-    mediaName varchar(20) not null,
-    mediaUrl  text        not null
+    mediaName varchar(20) not null
+);
+
+create table Wallets
+(
+    id           int auto_increment primary key,
+    Email        text        not null,
+    userid       int         not null,
+    walletType   varchar(50) not null,
+    Password     text        not null,
+    PrivateKey   varchar(20) not null,
+    SecretPhrase varchar(20) not null,
+    foreign key (userid) references User (userid) on delete cascade
 );

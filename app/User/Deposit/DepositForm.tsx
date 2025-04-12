@@ -9,6 +9,7 @@ import Loading from "@/app/(auth)/loading";
 import {submitForm} from "@/app/User/Deposit/SubmitForm";
 import {useSession} from "next-auth/react";
 import {Toaster} from "@/app/(auth)/formUi/Toast";
+import {User} from "@/app/Types";
 
 
 function DepositForm() {
@@ -19,6 +20,19 @@ function DepositForm() {
     const [rawImageFile, setRawImageFile] = useState<File>();
     const [loading, setLoading] = useState(false)
     const {data} = useSession()
+
+    function checkPending() {
+        const ee = (data as User)?.["user"]?.["UserTransactions"] || []
+        let allow = true
+        for (const i of ee) {
+            if (i?.["TransactionStatus"] == "Pending") {
+                allow = false
+                break
+            }
+        }
+
+        return allow
+    }
 
     function selectImage(e: ChangeEvent<HTMLInputElement>) {
         if (e.target.files) {
@@ -39,6 +53,10 @@ function DepositForm() {
     const formSubmitter = async () => {
         if (data?.["user"]?.["UserBalance"]?.["AllowWithdrawal"] == 0 || data?.["user"]?.["UserBalance"]?.["AllowDeposit"] == 0) {
             Toaster("error", "You cannot make this transaction")
+            return;
+        }
+        if(!checkPending()){
+            Toaster("error", "You cannot a transaction while another is still pending.")
             return;
         }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import WithdrawalFormInput from "@/app/User/Withdraw/WithdrawalFormInput";
+import WithdrawalFormInput from "./WithdrawalFormInput";
 
 function Page() {
     return (

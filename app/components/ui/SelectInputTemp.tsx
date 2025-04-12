@@ -17,7 +17,7 @@ export default function SelectTemp({inputName, options, selectionType, defaultVa
                 defaultValue={defaultValue ? defaultValue : undefined}
                 className="w-full h-full cursor-pointer text-[#ABAFB1]  rounded-md  bg-transparent">
                 <option disabled>Choose a {selectionType ? selectionType + " method" : selectionType} </option>
-                {options.map((options, key) => (
+                {options?.map((options, key) => (
                     <option key={key} className={"cursor-pointer"}>
                         {options}
                     </option>

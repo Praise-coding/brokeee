@@ -13,9 +13,9 @@ async function Page() {
     const transactionArray = userdata?.user?.UserTransactions?.slice(0, 3)
     const userBalance = userdata?.user?.UserBalance
     const arr = (await fetchCryptoPrice()) as Record<string, Record<string, number>>
-    const balance = (userBalance?.Deposited + userBalance?.Profit) || 0
+    const balance = userBalance?.Balance
     const added = (Object.entries(userBalance || {}).slice(1)).filter((data) => {
-        if (!(data[0].includes("Allow") || data[0].includes("With"))) {
+        if (!(data[0].includes("Allow") || data[0].includes("With") || data[0]  == "Balance")) {
             return data
         }
     });

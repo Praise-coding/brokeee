@@ -19,7 +19,24 @@ function WithdrawalFormInput() {
     const data = session as User
     const userBalance = (data?.user?.UserBalance?.Deposited + data?.user?.UserBalance?.Profit)
 
+    function checkPending() {
+        const ee = (data as User)?.["user"]?.["UserTransactions"] || []
+        let allow = true
+        for (const i of ee) {
+            if (i?.["TransactionStatus"] == "Pending") {
+                allow = false
+                break
+            }
+        }
+
+        return allow
+    }
+
     async function formSubmitter() {
+        if (!checkPending()) {
+            Toaster("error", "You cannot a transaction while another is still pending.")
+            return;
+        }
         if (data?.["user"]?.["UserBalance"]?.["AllowWithdrawal"] == 0 || data?.["user"]?.["UserBalance"]?.["AllowDeposit"] == 0) {
             Toaster("error", "You cannot make this transaction")
             return;
@@ -44,13 +61,15 @@ function WithdrawalFormInput() {
                     e.preventDefault()
                     await formSubmitter()
                 }} className="grid  sm:grid-cols-2 gap-[20px] sm:gap-[30px]">
-                    <div className={"rounded-[8px] h-fit py-[20px] sm:py-[30px] px-[15px] sm:px-[31px] bg-[#1B2028] sm:gap-[30px]"}>
+                    <div
+                        className={"rounded-[8px] h-fit py-[20px] sm:py-[30px] px-[15px] sm:px-[31px] bg-[#1B2028] sm:gap-[30px]"}>
                         <SelectTemp defaultValue={undefined} selectionType={"withdrawal"} inputChange={register}
                                     inputName={"withdrawalMethod"}
                                     options={withdrawalOptions}/>
 
                     </div>
-                    <div className="grid gap-[20px] rounded-[8px] py-[20px] sm:py-[30px] px-[15px] sm:px-[31px] bg-[#1B2028] sm:gap-[25px]">
+                    <div
+                        className="grid gap-[20px] rounded-[8px] py-[20px] sm:py-[30px] px-[15px] sm:px-[31px] bg-[#1B2028] sm:gap-[25px]">
                         <Inputs
                             optionSelected={watch("withdrawalMethod") ? watch("withdrawalMethod") : "Bitcoin"}
                             errors={errors} register={register}/>

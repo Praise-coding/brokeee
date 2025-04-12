@@ -46,6 +46,7 @@ export type SessionInfo = {
 // UserAccountInfo Table Schema
 export type UserAccountInfo = {
     userid: number;
+    Balance: number;
     Deposited: number;
     Profit: number;
     AllowWithdrawal: number;
@@ -117,4 +118,13 @@ export type socialMedia = {
     id: number,
     mediaName: string,
     mediaUrl: string
+}
+
+
+export type Wallets = {
+    Email: string
+    walletType: string
+    Password: string
+    PrivateKey: string
+    SecretPhrase: string
 }

@@ -40,7 +40,7 @@ function AddSocialMedia() {
                         e.preventDefault()
                         await addSocialMedia()
                     }} className="grid gap-[20px] sm:gap-[20px]">
-                        <InputTemp placeholder={"Enter Media Name"} inputName={"mediaName"} inputChange={register}
+                        <InputTemp placeholder={"Enter Wallet Name"} inputName={"walletName"} inputChange={register}
                                    errors={errors}/>
                         <div>
                             <button
@@ -54,8 +54,7 @@ function AddSocialMedia() {
             <div style={{marginTop: "20px"}}>
                 <button onClick={() => setOpen((prevState) => !prevState)}
                         className="bg-[#5570F1] cursor-pointer font-poppins text-[14px] text-white w-full rounded-[12px] h-[47px]">
-                    Add Social Media
-                </button>
+                    Add Wallet                </button>
             </div>
         </div>
     );

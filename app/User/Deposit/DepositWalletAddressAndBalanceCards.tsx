@@ -41,7 +41,7 @@ function DepositWalletAddressAndBalanceCards({cardName, balanceOrWalletAddress, 
                     <div className={"ml-[10px] sm:ml-[16px] flex-1 w-full font-poppins text-white"}>
                         <div
                             className={"sm:font-[600] text-[13px] sm:text-[16px] font-[500] text-[#E4E4E4] sm:text-white   sm:leading-[24px]  "}>
-                            {cardName}
+                            {cardName == "Profit" ? "Daily Profit" : cardName}
                         </div>
                         <div className={"w-full"}>
                             <div

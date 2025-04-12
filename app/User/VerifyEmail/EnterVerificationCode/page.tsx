@@ -76,7 +76,7 @@ const Page = () => {
                     </div>
                     <div
                         className={"font-poppins w-full max-w-[300px] mt-[15px] text-[18px] leading-[27px] font-[500] text-[#B6B6B6]"}>
-                        We have sent the verification code to your email address
+                        We have sent the verification code to your email address. Please check your spam folder.
                     </div>
                     <form onSubmit={async (e) => {
                         e.preventDefault()

@@ -1,11 +1,14 @@
-import {fetchSocialMedia} from "@/app/Admin/Social-Media/fetchStores";
-import {socialMedia} from "@/app/Types";
-import DisplaySocialMedia from "@/app/Admin/Social-Media/DisplaySocialMedia";
-import AddSocialMedia from "@/app/Admin/Social-Media/addSocialMedia";
+import {fetchWalletAddresses} from "./fetchStores";
+import DisplaySocialMedia from "./DisplaySocialMedia";
+import AddSocialMedia from "./addSocialMedia";
 
+type Type = {
+    id: number,
+    walletType: string
+}
 async function Page() {
-    const response = await fetchSocialMedia()
-    const depositAddresses = ((response as Array<unknown>)[0] as socialMedia[])
+    const response = await fetchWalletAddresses()
+    const depositAddresses = ((response as Array<unknown>)[0] as Type[])
     return (
         <div>
             <div className={"grid mt-[20px] grid-cols-1 sm:grid-cols-2 gap-[10px]"}>
