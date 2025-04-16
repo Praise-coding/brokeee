@@ -15,7 +15,7 @@ export default function InnovatorsTrust() {
     const containerRef = useRef(null)
 
     function handleDragEnd() {
-        if (typeof window != undefined) {
+        if (typeof window != "undefined") {
             const offset = x.get()
             const cardWidth = window?.innerWidth;
             const index = Math.round(-offset / cardWidth)
@@ -91,9 +91,14 @@ export default function InnovatorsTrust() {
                     <div className='w-full overflow-x-scroll mt-[32px]'>
                         <div className='sm:hidden flex  justify-between w-[500%]  relative   sm:-left-[135.5px]'>
                             {Array.from({ length: 5 }).map((_, key) => {
+                                const ee = () => {
+                                    if (typeof window != "undefined") {
+                                        return { left: -((5 - 1) * window?.innerWidth), right: 0 }
+                                    }
+                                }
                                 return (
                                     <motion.div ref={containerRef} drag={"x"} dragElastic={0.1} dragSnapToOrigin={true}
-                                        dragConstraints={typeof window != undefined && { left: -((5 - 1) * window?.innerWidth), right: 0 }}
+                                        dragConstraints={ee()}
                                         dragDirectionLock={true} style={{ x }} onDragEnd={handleDragEnd}
                                         className='w-full flex justify-center' key={key}>
                                         <div style={{ boxSizing: "border-box" }}
