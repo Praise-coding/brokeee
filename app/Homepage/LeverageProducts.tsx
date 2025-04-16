@@ -5,8 +5,6 @@ import AnimateCon from "@/app/Homepage/AnimateCon";
 
 export default function LeverageProducts() {
     const counter1 = useCounter(2000, 3000)
-    const counter2 = useCounter(2000, 3000)
-    const counter3 = useCounter(2000, 3000)
     const ref = useRef(null)
     return (
         <AnimateCon variants={{
