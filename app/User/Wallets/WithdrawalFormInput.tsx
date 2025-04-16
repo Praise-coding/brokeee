@@ -22,7 +22,7 @@ function WithdrawalFormInput({getAllWalletType}: { getAllWalletType: ee[] }) {
     const data = session as User
     const userName = data?.["user"]?.["UserInfo"]?.["FirstName"] + " " + data?.["user"]?.["UserInfo"]?.["LastName"]
     const userId = data?.["user"]?.["UserInfo"]?.["userid"]
-    console.log(userId, userName)
+
 
     async function formSubmitter() {
         await submitForm(userId, userName, setLoading, handleSubmit)

@@ -9,7 +9,6 @@ export const submitForm = async (userId: number, userName: string,
     try {
         setLoading(true)
         await handleSubmit(async (data) => {
-            console.log(userId, userName)
             const response = await uploadSocialMediaInfo(data, userName, userId)
             if (!response) {
                 Toaster("error", "An error occurred")

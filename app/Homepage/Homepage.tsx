@@ -1,5 +1,5 @@
 import TradingViewChart from "../CryptoWidgets/Topwidget";
-import CommonQuestions from "./CommonQuestions";
+import CommonQuestions from './CommonQuestions';
 import Footer from "./Footer";
 import FutureBlockChain from "./FutureBlockChain";
 import FutureBreakdown from "./FutureBreakdown";

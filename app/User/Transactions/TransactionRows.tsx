@@ -11,13 +11,12 @@ function TransactionRows({arrayOfData, timezone}: { arrayOfData?: userTransactio
     useEffect(() => {
         async function aniControl() {
             await new Promise(resolve => setTimeout(resolve, 700))
-
             await controls.start({height: "fit-content", transition:{duration: 1}})
             await controls2.start({y: 0, opacity:100})
         }
 
         aniControl()
-    }, [controls, controls2]);
+    }, [controls, controls2, arrayOfData]);
     return (
         <motion.div initial={{height: "0px"}} animate={controls} className={" overflow-hidden"}>
             {arrayOfData && arrayOfData?.map((data, key) => {
