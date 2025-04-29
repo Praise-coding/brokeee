@@ -34,7 +34,7 @@ export default function Page() {
                 try {
                     const request = await fetch("api/SignUp", {
                         method: "POST",
-                        headers: {"content-type": "application/json"},
+                        headers: {"content-type": "application/json", "x-cron-secret": String(process.env.CRON_SECRET)},
                         body: JSON.stringify({
                             ...data,
                             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone

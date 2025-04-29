@@ -17,7 +17,6 @@ export const {auth, handlers, signIn, signOut} = NextAuth({
                         return null
                     }
 
-
                     return await fetchDataForUser({
                         Email: credentials.Email.toString(),
                         Password: credentials.Password.toString(),

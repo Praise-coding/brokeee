@@ -20,7 +20,8 @@ export async function changePassword(
                 setLoading(true);
                 const request = await fetch("/api/updateUserInfo", {
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "x-cron-secret": String(process.env.CRON_SECRET)
                     },
                     method: "POST",
                     body: JSON.stringify({

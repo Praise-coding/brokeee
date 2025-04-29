@@ -9,6 +9,6 @@ export async function GET() {
 
         return NextResponse.json({data: allUsers}, {status: 200})
     } catch {
-        return NextResponse.json({error: "an error occured"}, {status: 500})
+        return NextResponse.json({error: "an error occurred"}, {status: 500})
     }
 }

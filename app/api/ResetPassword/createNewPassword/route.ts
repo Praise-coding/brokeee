@@ -13,7 +13,6 @@ export async function POST(request: Request) {
         ])
         await mysqlConnection.execute("delete from ResetPassword where email = ?", [userRequest?.email])
         return NextResponse.json({message: "successful"}, {status: 200})
-
     } catch (e) {
         console.error(e)
         return NextResponse.json({message: "An"}, {status: 400})

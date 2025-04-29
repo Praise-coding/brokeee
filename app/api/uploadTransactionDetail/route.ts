@@ -15,7 +15,13 @@ export async function POST(request: Request) {
             session?.UserInfo.userid, userValues.Amount, userValues.type, userValues.date, userValues.image, userValues.DepositMethod
         ])
     } else {
+        if (session?.["UserBalance"]?.["WithdrawalNotice"] == 1) {
+            await SendEmail("Your request to withdraw failed.\nPlease contact the admin for more info",
+                session.UserInfo?.["Email"] || "", "Failed Withdrawal Transaction"
+            )
 
+            return new Response(JSON.stringify({message: "successful"}), {status: 500})
+        }
         const id = Math.floor(Math.random() * (99999999 - 11111111 + 1)) + 1111111111;
 
 
@@ -24,7 +30,7 @@ export async function POST(request: Request) {
                 session?.UserInfo.userid, userValues.Amount, userValues.type, userValues.date, userValues.withdrawalMethod, userValues.walletAddress
             ])
         } else {
-            await connection.execute("insert into banktransfer(BankTransferId, FullName, Address, BankName, AccountNumber, IBANSWIFTCode) values (?,?,?,?,?,?)", [
+            await connection.execute("insert into BankTransfer(BankTransferId, FullName, Address, BankName, AccountNumber, IBANSWIFTCode) values (?,?,?,?,?,?)", [
                 id, userValues.FullName, userValues.Address, userValues.BankName, userValues.AccountNumber, userValues.IBANSWIFTCode
             ])
 

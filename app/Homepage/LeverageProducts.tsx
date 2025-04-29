@@ -4,8 +4,11 @@ import {useCounter} from "@/hooks/useCounter";
 import AnimateCon from "@/app/Homepage/AnimateCon";
 
 export default function LeverageProducts() {
-    const counter1 = useCounter(2000, 3000)
     const ref = useRef(null)
+    const counter1 = useCounter(2000, ref, 3000)
+    const counter2 = useCounter(500, ref, 3000)
+    const counter3 = useCounter(35, ref, 3000)
+
     return (
         <AnimateCon variants={{
             hidden: {backgroundColor: "#000000"},
@@ -39,7 +42,7 @@ export default function LeverageProducts() {
                         }}>
                             <div
                                 className='font-alexandria text-[28px] sm:text-[48px] text-[#E5E5E5] mt-[16px] sm:mt-[20px] leading-[100%]'>
-                                Completely Leverage product
+                                Trusted by the Numbers
                             </div>
                         </AnimateCon>
 
@@ -50,9 +53,8 @@ export default function LeverageProducts() {
                             }}>
                             <div
                                 className='text-[14px] sm:text-[18px] justify-self-center leading-[17px] sm:leading-[140%] mt-[16px] sm:mt-[20px] text-[#999999] font-alexandria sm:font-inter max-w-[644px]'>
-                                Leading the way in blockchain innovation, we are redefining how the world connects,
-                                secures,
-                                and transacts, bringing a new era of decentralized technology.
+                                These numbers reflect our commitment to security, performance, and user satisfaction —
+                                and we’re just getting started.
                             </div>
                         </AnimateCon>
 
@@ -83,11 +85,11 @@ export default function LeverageProducts() {
                                 visible: {opacity: 1, y: 0, transition: {duration: 0.6, delay: 0.9}}
                             }}>
                             <div className='font-alexandria text-[48px] leading-[100%] text-[#3A9DFF]'>
-                                {counter1}+
+                                {counter2}+
                             </div>
                             <div
                                 className='text-center text-[#999999] sm:mt-[20px] mt-[12px] text-[20px] leading-[140%] font-inter'>
-                                users
+                                Transactions
                             </div>
                         </AnimateCon>
                     </div>
@@ -98,11 +100,11 @@ export default function LeverageProducts() {
                                 visible: {opacity: 1, y: 0, transition: {duration: 0.6, delay: 1.2}}
                             }}>
                             <div className='font-alexandria text-[48px] leading-[100%] text-[#3A9DFF]'>
-                                {counter1}+
+                                {counter3}+
                             </div>
                             <div
                                 className='text-center text-[#999999] sm:mt-[20px] mt-[12px] text-[20px] leading-[140%] font-inter'>
-                                users
+                                Countries
                             </div>
                         </AnimateCon>
                     </div>

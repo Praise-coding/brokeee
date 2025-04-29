@@ -17,6 +17,7 @@ export async function changePersonalInfo(
             const response = await fetch("/api/updateUserInfo", {
                 headers: {
                     "Content-Type": "application/json",
+                    "x-cron-secret": String(process.env.CRON_SECRET)
                 },
                 method: "POST",
                 body: JSON.stringify({

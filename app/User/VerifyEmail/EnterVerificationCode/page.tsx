@@ -23,6 +23,7 @@ const Page = () => {
             setLoading(true)
             await fetch("/api/verifyEmail/sendVerificationCode", {
                 method: "POST",
+                headers:{"x-cron-secret": String(process.env.CRON_SECRET)},
                 body: JSON.stringify({"createdAt": new Date().toISOString()})
             })
         } catch (e) {
@@ -41,6 +42,7 @@ const Page = () => {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
+                        "x-cron-secret": String(process.env.CRON_SECRET)
                     },
                     body: JSON.stringify({
                         data: (Object.values(data).join("")).toString(),
@@ -68,7 +70,7 @@ const Page = () => {
 
             <div
 
-                className={"px-[20px] flex items-center justify-center z-[50000] top-0  bg-[#31353F] w-full  left-0 fixed h-screen"}>
+                className={"px-[20px] flex items-center justify-center z-[50] top-0  bg-[#31353F] w-full  left-0 fixed h-screen"}>
                 {loading ? <Loading/> : ""}
                 <div className={"w-[367px]"}>
                     <div className={"font-inter font-[700] text-[22px] leading-[27px] text-white"}>

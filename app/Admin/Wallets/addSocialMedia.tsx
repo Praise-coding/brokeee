@@ -14,7 +14,6 @@ function AddSocialMedia() {
     const [open, setOpen] = useState(false);
 
     async function addSocialMedia() {
-
         await handleSubmit(async (data) => {
             setLoading(true)
             const response = await addSocial(data)

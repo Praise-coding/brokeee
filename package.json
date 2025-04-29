@@ -9,8 +9,10 @@
     "lint": "next lint",
     "vercel-build": "npm install --legacy-peer-deps && npm run build"
   },
+
   "dependencies": {
     "@supabase/ssr": "^0.5.2",
+
     "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/postcss": "^4.0.8",
     "@tanstack/react-query": "^5.66.9",

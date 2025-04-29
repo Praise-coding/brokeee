@@ -1,6 +1,9 @@
 import type {NextConfig} from "next";
 
 const nextConfig: NextConfig = {
+    env: {
+        CRON_SECRET: process.env.CRON_SECRET,
+    },
     /* config options here */
     images: {
         remotePatterns: [
@@ -27,7 +30,7 @@ const nextConfig: NextConfig = {
                 hostname: 'static.vecteezy.com',
                 port: '',
                 search: '',
-            },{
+            }, {
                 protocol: 'https',
                 hostname: 'qjwmnqxjncnbdtxcvsdd.supabase.co',
                 port: '',
@@ -39,6 +42,13 @@ const nextConfig: NextConfig = {
                 port: '',
                 search: '',
             },
+            {
+                protocol: 'https',
+                hostname: 'randomuser.me',
+                port: '',
+                search: '',
+            },
+
 
         ]
     }

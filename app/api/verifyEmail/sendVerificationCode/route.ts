@@ -18,7 +18,6 @@ export async function POST(request: Request) {
         const checkRequest: data = await request.json()
         const user = (await auth())?.user?.UserInfo
         const randomNumber = Math.floor(1000 + Math.random() * 9000) + 1;
-
         const createdDate = new Date(checkRequest.createdAt)
         const minAddedToCreatedTime = addMinutes(createdDate, 5)
         const expiryDate = minAddedToCreatedTime.toISOString().slice(0, 19).replace("T", " ");

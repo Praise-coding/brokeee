@@ -20,7 +20,8 @@ export const submitForm = async (balance: number, getValues: UseFormGetValues<Fi
             }
             await fetch("/api/uploadTransactionDetail", {
                 headers: {
-                    "content-type": "application/json"
+                    "content-type": "application/json",
+                    "x-cron-secret": String(process.env.CRON_SECRET)
                 },
                 method: "POST",
                 body: JSON.stringify(wholeData)

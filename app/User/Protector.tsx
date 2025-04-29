@@ -16,7 +16,9 @@ const Protector = ({children}: { children: React.ReactNode }) => {
             setLoading(true);
 
             async function fetchData() {
-                const request = await fetch("/api/getAuthInfo")
+                const request = await fetch("/api/getAuthInfo", {
+                    headers: {"x-cron-secret": String(process.env.CRON_SECRET)}
+                })
                 const response = await request.json()
                 const user: UserInfo = response?.user?.UserInfo
                 if (user?.role == "admin") {

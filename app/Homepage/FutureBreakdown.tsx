@@ -6,7 +6,16 @@ import {motion, useInView} from "framer-motion";
 export default function FutureBreakdown() {
     const ref = useRef(null)
     const inView = useInView(ref, {amount: "some"})
-
+    const data = [{
+        title: "Advanced Charting Tools",
+        info: "Use customizable charts powered by TradingView for deep market analysis"
+    }, {
+        title: " Multi-Asset Support",
+        info: "Access Bitcoin, Ethereum and more — all from a single wallet."
+    }, {
+        title: "Military-Grade Security",
+        info: "End-to-end encryption and 2FA keep your assets and data safe at all times."
+    }]
     return (
         <div id={"Features"} className='mx-[20px] flex justify-center relative py-[40px] sm:py-[80px]'>
             <motion.div
@@ -34,7 +43,7 @@ export default function FutureBreakdown() {
                         >
                             <div
                                 className='font-alexandria text-[28px] sm:text-[48px] text-[#E5E5E5] mt-[16px] sm:mt-[20px] leading-[100%]'>
-                                Future Breakdown
+                                Features Breakdown
                             </div>
                         </AnimateCon>
                         <div>
@@ -45,9 +54,8 @@ export default function FutureBreakdown() {
                                 }}>
                                 < div
                                     className='text-[16px] sm:text-[18px] justify-self-center leading-[20px] sm:leading-[140%] mt-[16px] sm:mt-[20px] text-[#999999] font-alexandria sm:font-inter max-w-[644px]'>
-                                    Secure, scalable, and decentralized solutions for your digital assets—experience the
-                                    future
-                                    of financial freedom.
+                                    Our platform is built for both beginners and pros, combining powerful tools, real-time data, and secure infrastructure — so you can focus on growing your portfolio, not worrying about the tech.
+
                                 </div>
                             </AnimateCon>
 
@@ -58,7 +66,7 @@ export default function FutureBreakdown() {
                 <div
                     ref={ref}
                     className='grid mt-[32px]  justify-center sm:mt-[80px] grid-cols-1 sm:grid-cols-3 gap-[16px] sm:gap-[24px]'>
-                    {Array.from({length: 3}).map((_, key) => {
+                    {data.map((data, key) => {
                         return (
                             <AnimateCon variants={{
                                 hidden: {width: "0%", opacity: 0},
@@ -78,12 +86,11 @@ export default function FutureBreakdown() {
                                     </svg>
                                     <div
                                         className='text-[20px]  leading-[140%] font-[300] mt-[36px] text-[#E5E5E5] text-center font-inter'>
-                                        Scalability
+                                        {data.title}
                                     </div>
                                     <div
                                         className='mt-[16px] font-alexandria leading-[20px] text-[#999999] text-center'>
-                                        Adapt and grow, no matter the demand on grow
-                                    </div>
+                                        {data.info}</div>
                                 </AnimateCon>
 
                             </AnimateCon>

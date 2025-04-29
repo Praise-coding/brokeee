@@ -13,21 +13,23 @@ import Revolutionary from "./Revolutionary";
 export default function Homepage() {
     return (
         <main className="overflow-x-hidden">
-            <TradingViewChart />
-            <NavBar />
-            <LandingPage />
-            <Partners />
-            <FutureBreakdown />
+            <TradingViewChart/>
+            <NavBar/>
+            <div className={"h-[1px] w-full border-b border-b-[#2E2E2E] "}>
 
-            <LeverageProducts />
-            <FutureBlockChain />
-            <InnovatorsTrust />
+            </div>
+            <LandingPage/>
+            <Partners/>
+            <FutureBreakdown/>
+
+            <LeverageProducts/>
+            <FutureBlockChain/>
+            <InnovatorsTrust/>
 
 
-
-            <CommonQuestions />
-            <Revolutionary />
-            <Footer />
+            <CommonQuestions/>
+            <Revolutionary/>
+            <Footer/>
         </main>
     )
 }
