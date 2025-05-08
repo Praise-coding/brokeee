@@ -11,9 +11,10 @@ export default function NavBar() {
             <AnimateCon
                 refProp={ref}
                 variants={{
-                    hidden: {top: "-100px"},
+                    hidden: {x: -100, opacity: 0},
                     visible: {
-                        top: "0px",
+                        x: 0,
+                        opacity: 100,
                         transition: {duration: 0.5}
                     }
                 }} className="flex relative justify-center px-[20px] py-[20px] sm:py-[24px]">

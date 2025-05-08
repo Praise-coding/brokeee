@@ -2,17 +2,21 @@
 import Image from 'next/image'
 import React, {useEffect, useRef, useState} from 'react'
 import AnimateCon from "@/app/Homepage/AnimateCon";
-import {animate, motion, useAnimation, useInView, useMotionValue} from "framer-motion";
+import {animate, motion, useMotionValue} from "framer-motion";
+import useScreenWidth from "@/hooks/useScreenWidth";
+import {testimonials} from "@/app/Homepage/testimonials";
 
 export default function InnovatorsTrust() {
-    const controls = useAnimation()
-    const controls2 = useAnimation()
-    const [again, setAgain] = useState(true)
-    const [again2, setAgain2] = useState(true)
+
     const ref = useRef(null)
+    const ref2 = useRef<HTMLDivElement>(null)
+    const ref4 = useRef<HTMLDivElement | null>(null)
+    const ee = ref2
     const x = useMotionValue(0)
     const containerRef = useRef(null)
-    const inview = useInView(ref)
+
+    const screenWidth = useScreenWidth()
+    const [distance, setDistance] = useState<number>()
 
     function handleDragEnd() {
         if (typeof window != "undefined") {
@@ -23,93 +27,18 @@ export default function InnovatorsTrust() {
             const final = -clamped * cardWidth
             animate(x, final, {type: 'spring', stiffness: 300})
         }
-
     }
 
     useEffect(() => {
-
-        async function anime() {
-            if (inview) {
-                await controls.start({right: "0%", left: "", transition: {duration: 13, ease: "linear"}})
-                await controls.start({left: "0px", right: "", transition: {duration: 13, ease: "linear"}})
-                setAgain((prev) => !prev)
-            }
-
+        const containerWidth = ref4.current
+        const cardsWidth = ref2.current
+        if (cardsWidth && containerWidth) {
+            setDistance(cardsWidth.offsetWidth - containerWidth.offsetWidth)
         }
-
-        anime()
-    }, [controls, again, inview])
-
-    useEffect(() => {
-
-        async function anime() {
-            if (inview) {
-                await controls2.start({left: "0%", right: "", transition: {duration: 13, ease: "linear"}})
-                await controls2.start({right: "0px", left: "", transition: {duration: 13, ease: "linear"}})
-                setAgain2((prev) => !prev)
-            }
-
-        }
-
-
-        anime()
-    }, [controls2, again2, inview])
-
-    const testimonials = [
-        {
-            name: "Eliza Hartwell",
-            comment: "Smart alerts help me rebalance my portfolio before major shifts hit the broader crypto market.",
-            image: "https://randomuser.me/api/portraits/women/45.jpg"
-        },
-        {
-            name: "Jamal Ortega",
-            comment: "Automated tools track coin performance and send insights when specific risk thresholds are triggered.",
-            image: "https://randomuser.me/api/portraits/men/12.jpg"
-        },
-        {
-            name: "Nicolette Dray",
-            comment: "Live charts and strategy presets help me optimize entries without watching the screen all day.",
-            image: "https://randomuser.me/api/portraits/women/65.jpg"
-        },
-        {
-            name: "Marcellus Vane",
-            comment: "The platform analyzes trends and suggests swaps based on real-time volatility and market heatmaps.",
-            image: "https://randomuser.me/api/portraits/men/44.jpg"
-        },
-        {
-            name: "Tanya Wexler",
-            comment: "Portfolio tracking updates in real time, helping me stay aligned with my long-term goals.",
-            image: "https://randomuser.me/api/portraits/women/33.jpg"
-        },
-        {
-            name: "DeShawn Rivas",
-            comment: "Transaction history is neatly organized, making it easy to track trades and export reports.",
-            image: "https://randomuser.me/api/portraits/men/53.jpg"
-        },
-        {
-            name: "Karina Lowther",
-            comment: "Built-in tools let me compare assets quickly before locking in any trades or rebalances.",
-            image: "https://randomuser.me/api/portraits/women/76.jpg"
-        },
-        {
-            name: "Brynley Hodge",
-            comment: "Security features like cold storage and 2FA keep my account safe without slowing me down.",
-            image: "https://randomuser.me/api/portraits/men/24.jpg"
-        },
-        {
-            name: "Seraphina Pike",
-            comment: "I get notified instantly when assets hit price targets or volume thresholds I’ve pre-set.",
-            image: "https://randomuser.me/api/portraits/women/27.jpg"
-        },
-        {
-            name: "Emory Griggs",
-            comment: "The dashboard gives me clarity across all wallets without needing to switch between tabs.",
-            image: "https://randomuser.me/api/portraits/men/38.jpg"
-        }
-    ];
+    }, [screenWidth])
 
     return (
-        <div id={"Testimonials"} className='bg-[#0F0F0F]  flex flex-col sm:h-[872px] sm:pb-[80px] relative'>
+        <div ref={ref} id={"Testimonials"} className='bg-[#0F0F0F]  flex flex-col sm:h-[872px] sm:pb-[80px] relative'>
             <div className='flex justify-center absolute top-0 left-0 w-full'>
                 <div className='bg-[rgba(74,90,236,0.06)] blur-[139.9px] w-[606px] h-[425px] absolute top-[116px]'>
 
@@ -141,8 +70,8 @@ export default function InnovatorsTrust() {
                                 hidden: {opacity: 0, y: 50},
                                 visible: {opacity: 1, y: 0, transition: {duration: 0.6, delay: 0.3}}
                             }}>
-                            <div ref={ref}
-                                 className='text-[14px] sm:text-[18px] justify-self-center leading-[17px] sm:leading-[140%] mt-[16px] sm:mt-[20px] text-[#999999] font-alexandria sm:font-inter max-w-[644px]'>
+                            <div
+                                className='text-[14px] sm:text-[18px] justify-self-center leading-[17px] sm:leading-[140%] mt-[16px] sm:mt-[20px] text-[#999999] font-alexandria sm:font-inter max-w-[644px]'>
                                 Secure your digital assets with the peace of mind that comes from knowing you are
                                 protected
                                 by the best technology in the blockchain space.
@@ -170,7 +99,8 @@ export default function InnovatorsTrust() {
                                             </div>
                                             <div className='mt-[24px] items-center flex gap-[16px]'>
                                                 <div>
-                                                    <Image src={data.image} width={50} height={50} className='w-[48px] h-[48px] rounded-full' alt=''/>
+                                                    <Image src={data.image} width={50} height={50}
+                                                           className='w-[48px] h-[48px] rounded-full' alt=''/>
                                                 </div>
                                                 <div>
                                                     <div
@@ -195,7 +125,7 @@ export default function InnovatorsTrust() {
             </div>
 
             <div className={"w-full flex justify-center  overflow-hidden flex-1 "}>
-                <AnimateCon className={"relative overflow-hidden max-w-[1300px] z-[20]  h-full w-full "}>
+                <AnimateCon refProp={ref4} className={"relative overflow-hidden max-w-[1300px] z-[20]  h-full w-full "}>
                     <div style={{backgroundImage: "linear-gradient(to right, #0F0F0F, transparent)"}}
                          className={"z-[30] w-[200px]   h-full absolute left-0 top-0"}>
 
@@ -204,9 +134,15 @@ export default function InnovatorsTrust() {
                          className={"z-[30] w-[200px]   h-full absolute right-0 top-0"}>
 
                     </div>
-                    <motion.div
-                        initial={{left: "0px"}}
-                        animate={controls}
+                    <AnimateCon
+                        refProp={ref2}
+                        variants={{
+                            hidden: {x: 0},
+                            visible: {
+                                x: [0, distance && (distance < 0 ? distance : -distance), 0],
+                                transition: {duration: 30, repeat: Infinity}
+                            }
+                        }}
                         className='hidden absolute  sm:flex gap-[20px] z-[20]  top-0  '>
                         {testimonials.slice(0, 5).map((data, key) => {
                             return (
@@ -218,7 +154,8 @@ export default function InnovatorsTrust() {
                                     </div>
                                     <div className='mt-[32px] items-center flex gap-[16px]'>
                                         <div>
-                                            <Image width={50} height={50} src={data.image} className='w-[48px] h-[48px] rounded-full' alt=''/>
+                                            <Image width={50} height={50} src={data.image}
+                                                   className='w-[48px] h-[48px] rounded-full' alt=''/>
                                         </div>
                                         <div>
                                             <div className='font-alexandria text-white text-[14px] leading-[17px] '>
@@ -233,12 +170,20 @@ export default function InnovatorsTrust() {
                             )
                         })}
 
-                    </motion.div>
+                    </AnimateCon>
 
-                    <motion.div initial={{right: "0px"}} animate={controls2}
-                                className='hidden absolute sm:flex gap-[20px]  bottom-0 mt-[20px] '>
+                    <AnimateCon
+                        refProp={ee}
+                        variants={{
+                            hidden: {x: 0},
+                            visible: {
+                                x: [0, distance && (distance > 0 ? distance : -distance), 0],
+                                transition: {duration: 30, repeat: Infinity}
+                            }
+                        }}
+                        className='hidden right-0 absolute sm:flex gap-[20px]  bottom-0 mt-[20px] '>
 
-                        {testimonials.slice(6, 10).map((data, key) => {
+                        {testimonials.slice(5, 10).map((data, key) => {
                             return (
                                 <div style={{boxSizing: "border-box"}} key={key}
                                      className='bg-black  rounded-[16px] border border-[grey] p-[32px] backdrop-blur-[4.59122px] min-w-[373px] w-full h-[204px]'>
@@ -247,7 +192,8 @@ export default function InnovatorsTrust() {
                                     </div>
                                     <div className='mt-[32px] items-center flex gap-[16px]'>
                                         <div>
-                                            <Image width={50} height={50} src={data.image} className='w-[48px] h-[48px] rounded-full' alt=''/>
+                                            <Image width={50} height={50} src={data.image}
+                                                   className='w-[48px] h-[48px] rounded-full' alt=''/>
                                         </div>
                                         <div>
                                             <div className='font-alexandria text-white text-[14px] leading-[17px] '>
@@ -263,7 +209,7 @@ export default function InnovatorsTrust() {
                             )
                         })}
 
-                    </motion.div>
+                    </AnimateCon>
 
                 </AnimateCon>
 

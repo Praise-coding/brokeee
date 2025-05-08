@@ -5,7 +5,7 @@ import React, {useRef} from 'react'
 type AnimateProps = MotionProps & {
     children: React.ReactNode,
     className?: string,
-    refProp?: React.RefObject<null>
+    refProp?: React.RefObject<null | HTMLDivElement>
 }
 const AnimateCon = ({children, className, refProp, ...motionProps}: AnimateProps) => {
     const ref = useRef(null)
@@ -14,7 +14,7 @@ const AnimateCon = ({children, className, refProp, ...motionProps}: AnimateProps
     return (
 
         <motion.div
-            ref={refProp ? undefined : ref}
+            ref={refProp ? refProp : ref}
             className={className}
             {...motionProps}
             initial="hidden"

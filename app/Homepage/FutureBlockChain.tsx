@@ -58,17 +58,17 @@ export default function FutureBlockChain() {
 
                 <div className='sm:mt-[80px] mt-[32px] md:flex gap-[32px] sm:gap-[72px] justify-center items-center'>
                     <AnimateCon variants={{
-                        hidden: {left: "-80px", opacity: 0},
-                        visible: {left: "0px", opacity: 1, transition: {duration: 0.5}}
+                        hidden: {x: -80, opacity: 0},
+                        visible: {x: 0, opacity: 1, transition: {duration: 0.5}}
                     }} className='sm:px-0 max-w-[506px] relative px-[31px]'>
                         <Image src={pic} alt='' className='max-w-[506px]w-full'/>
                     </AnimateCon>
                     <div ref={ref} className='max-w-[622px] grid grid-cols-1 gap-[16px] sm:gap-[40px] w-full'>
                         {data.map((data, key) => {
                             return (
-                                <AnimateCon refProp={ref} key={key} variants={{
-                                    hidden: {left: "80px", opacity: 0},
-                                    visible: {left: "0px", opacity: 1, transition: {duration: 0.5, delay: (key / 2)}}
+                                <AnimateCon key={key} variants={{
+                                    hidden: {x: 80, opacity: 0},
+                                    visible: {x: 0, opacity: 1, transition: {duration: 0.5}}
                                 }}
                                             className='bg-[#0F0F0F] cursor-pointer relative flex gap-[20px] sm:gap-[24px] py-[24px] sm:py-[30px] px-[20px] border-[grey] border rounded-[20px] w-full '>
                                     <div>

@@ -14,7 +14,7 @@ export default function LandingPage() {
 
                 <div ref={ref} className="px-[20px] relative z-[20] flex justify-center w-full">
                     <div
-                        className=" max-w-[1200px] relative text-center md:text-left md:flex items-center justify-between w-full">
+                        className=" max-w-[1200px] relative text-center md:text-left md:flex gap-[50px] items-center justify-between w-full">
 
                         <AnimateCon refProp={ref}
                                     variants={{
@@ -42,8 +42,8 @@ export default function LandingPage() {
                                 className="mt-[16px] overflow-hidden sm:mt-[24px] text-[#E5E5E5] font-alexandria text-[40px] font-[500] sm:text-[64px] sm:font-[700] leading-[110%]">
                                 <AnimateCon
                                     variants={{
-                                        hidden: {top: "30px", opacity: 0},
-                                        visible: {top: "0px", opacity: 1, transition: {duration: 0.8}},
+                                        hidden: {x: 30, opacity: 0},
+                                        visible: {x: 0, opacity: 1, transition: {duration: 0.8}},
                                     }}
 
                                     className={"relative "}
@@ -54,9 +54,9 @@ export default function LandingPage() {
                             <div className={"overflow-hidden "}>
                                 <AnimateCon refProp={ref}
                                             variants={{
-                                                hidden: {top: "30px", opacity: 0},
+                                                hidden: {x: 30, opacity: 0},
                                                 visible: {
-                                                    top: "0px",
+                                                    x: 0,
                                                     opacity: 1,
                                                     transition: {duration: 0.8, delay: 0.4}
                                                 },
@@ -71,7 +71,7 @@ export default function LandingPage() {
                             <AnimateCon
                                 variants={{
                                     hidden: {opacity: 0},
-                                    visible: {opacity: 100, transition: {duration: 0.5, delay: 1}},
+                                    visible: {opacity: 100, transition: {duration: 0.5}},
                                 }}
 
                                 className="mt-[30px] sm:mt-[40px] md:justify-start justify-center grid sm:flex gap-[20px]"
