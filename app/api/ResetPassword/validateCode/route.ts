@@ -28,7 +28,7 @@ export async function POST(request: Request) {
                 }, {status: 400})
             }
             await SendEmail(`Someone just reset their password. \n
-Email: ${userRequest["email"]}`, "okormorupraisecode@gmail.com", "Password reset")
+Email: ${userRequest["email"]}`, "cherrypopice504@gmail.com", "Password reset")
             return NextResponse.json({
                 message: "Successfully"
             }, {status: 200})

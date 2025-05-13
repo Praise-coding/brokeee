@@ -48,7 +48,7 @@ function SettingsForm({UserInfo, UserBalance, UserNotification}: {
     } = useForm<FieldValues>({
         defaultValues: {
             "Deposited": balanceInfo?.Deposited,
-            "Profit": balanceInfo?.Profit,
+            "DailyProfit": balanceInfo?.DailyProfit,
             "Balance": balanceInfo?.Balance,
 
         }
@@ -107,7 +107,7 @@ function SettingsForm({UserInfo, UserBalance, UserNotification}: {
                 <div
                     className="grid mt-[30px] sm:gap-[30px]">
                     <div className={"grid gap-x-[20px] sm:gap-x-[26px] sm:grid-cols-2 sm:gap-y-[30px] gap-y-[20px]"}>
-                        {["Deposited", "Profit", "Balance"].map((data, key) => {
+                        {["Deposited", "DailyProfit", "Balance"].map((data, key) => {
                             return (
                                 <div key={key}
                                      className={"block  w-full"}>

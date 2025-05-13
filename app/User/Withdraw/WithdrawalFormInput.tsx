@@ -17,7 +17,7 @@ function WithdrawalFormInput() {
     const [loading, setLoading] = useState(false)
     const {data: session} = useSession()
     const data = session as User
-    const userBalance = (data?.user?.UserBalance?.Deposited + data?.user?.UserBalance?.Profit)
+    const userBalance = (data?.user?.UserBalance?.Deposited + data?.user?.UserBalance?.["DailyProfit"])
 
     function checkPending() {
         const ee = (data as User)?.["user"]?.["UserTransactions"] || []

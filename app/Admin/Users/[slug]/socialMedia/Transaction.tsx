@@ -3,17 +3,17 @@
 
 import TransactionRows from "./TransactionRows";
 import React from 'react'
-import {Wallets} from "@/app/Types";
+import {UserSocialMedias} from "@/app/Types";
 import Link from "next/link";
 import RefreshButton from "@/app/User/Dashboard/refreshButton";
 
 export const dynamic = "force-dynamic"
 
 
-function Transaction({ arrayOfData, showButton, timezone}: {
+function Transaction({arrayOfData, showButton, timezone}: {
     sectionName: string,
     showButton?: boolean,
-    arrayOfData: Wallets[] | undefined,
+    arrayOfData: UserSocialMedias[] | undefined,
     timezone?: string
 }) {
     return (
@@ -23,7 +23,7 @@ function Transaction({ arrayOfData, showButton, timezone}: {
                 <div className={"flex justify-between items-center"}>
                     <div
                         className="font-[600] font-poppins text-[#E4E4E4] text-[16px] sm:text-[21px] leading-[32px] tracking-[0.03em]">
-                        Connected Wallets
+                        Connected Social Medias
                     </div>
                     {showButton ? <Link href={"Transactions"}>
                             <button
@@ -44,14 +44,18 @@ function Transaction({ arrayOfData, showButton, timezone}: {
                     <div className={"md:w-full  w-max"}>
                         <div className={" md:max-w-full  max-w-[900px]"}>
                             <div
-                                className={"grid grid-cols-3 gap-[30px] sm:gap-[40px] mt-[30px]  justify-between w-full item-center"}>
+                                className={"grid grid-cols-4 gap-[30px] sm:gap-[40px] mt-[30px]  justify-between w-full item-center"}>
                                 <div
                                     className={"text-[12px] font-poppins text-[#9E9E9E] leading-[18px] "}>
-                                    Wallet Type
+                                    Platform
                                 </div>
                                 <div
                                     className={"text-[12px] font-poppins text-[#9E9E9E] leading-[18px] "}>
                                     Email
+                                </div>
+                                <div
+                                    className={"text-[12px] font-poppins text-[#9E9E9E] leading-[18px] "}>
+                                    UserName
                                 </div>
                                 <div
                                     className={"text-[12px] font-poppins text-[#9E9E9E] leading-[18px] "}>

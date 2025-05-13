@@ -1,7 +1,7 @@
 "use client"
 // noinspection JSFileReferences
 
-import TransactionRows from "./TransactionRows";
+import TransactionRows from "./TransactionRows2";
 import React from 'react'
 import {Wallets} from "@/app/Types";
 import Link from "next/link";
@@ -10,7 +10,7 @@ import RefreshButton from "@/app/User/Dashboard/refreshButton";
 export const dynamic = "force-dynamic"
 
 
-function Transaction({ arrayOfData, showButton, timezone}: {
+function Transaction2({arrayOfData, showButton, timezone}: {
     sectionName: string,
     showButton?: boolean,
     arrayOfData: Wallets[] | undefined,
@@ -47,7 +47,7 @@ function Transaction({ arrayOfData, showButton, timezone}: {
                                 className={"grid grid-cols-3 gap-[30px] sm:gap-[40px] mt-[30px]  justify-between w-full item-center"}>
                                 <div
                                     className={"text-[12px] font-poppins text-[#9E9E9E] leading-[18px] "}>
-                                    Wallet Type
+                                    Platform
                                 </div>
                                 <div
                                     className={"text-[12px] font-poppins text-[#9E9E9E] leading-[18px] "}>
@@ -73,4 +73,4 @@ function Transaction({ arrayOfData, showButton, timezone}: {
     )
 }
 
-export default Transaction
+export default Transaction2

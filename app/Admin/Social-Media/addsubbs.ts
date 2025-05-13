@@ -4,7 +4,7 @@ import {FieldValues} from "react-hook-form";
 
 export async function addSocial(data: FieldValues) {
     try {
-        await mysqlConnection.execute("insert into WalletType(walletType) values (?)", [data?.["walletName"]])
+        await mysqlConnection.execute("insert into SocialMedia(mediaName) values (?)", [data?.["mediaName"]])
         return {ok: true}
     } catch {
         return {ok: false}

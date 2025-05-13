@@ -87,7 +87,7 @@ export const Icons = ({name}: { name: string }) => {
                 </svg>
             }
 
-            {name == "Profit" &&
+            {name == "DailyProfit" &&
                 <svg className={"sm:w-[26px] h-[19px] w-[19px] sm:h-[26px]"} viewBox="0 0 26 26" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                     <path opacity="0.2"

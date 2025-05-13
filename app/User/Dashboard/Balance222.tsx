@@ -9,7 +9,7 @@ function Balance() {
     const {data: session, status}: { data: unknown, status: string } = useSession();
     const userData = session as User
     const cardName = Object.entries(userData?.user?.UserBalance || {}).slice(1)
-    cardName.unshift(["Balance", userData?.user?.UserBalance?.Deposited + userData?.user?.UserBalance?.Profit]);
+    cardName.unshift(["Balance", userData?.user?.UserBalance?.Deposited + userData?.user?.UserBalance?.["DailyProfit"]]);
 
 
     return (<>

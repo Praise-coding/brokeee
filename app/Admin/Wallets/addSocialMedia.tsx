@@ -5,7 +5,7 @@ import {useForm} from "react-hook-form";
 import Loading from "@/app/(auth)/loading";
 import {Toaster} from "@/app/(auth)/formUi/Toast";
 import {useRouter} from "next/navigation";
-import {addSocial} from "@/app/Admin/Social-Media/addsubbs";
+import {addSocial} from "@/app/Admin/Wallets/addsubbs";
 
 function AddSocialMedia() {
     const {register, handleSubmit, formState: {errors}} = useForm({})

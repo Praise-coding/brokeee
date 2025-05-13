@@ -1,7 +1,7 @@
 "use server"
 
 import {SignupFormInput} from "@/app/Types";
-import {signIn} from "@/app/api/auth/lib/authOption";
+import {auth, signIn} from "@/app/api/auth/lib/authOption";
 
 type server_message = {
     server_message: string
@@ -13,16 +13,17 @@ interface AuthError extends Error {
 
 export const SignIn = async (data: SignupFormInput) => {
     try {
-        const response= (await signIn("credentials", {
+        (await signIn("credentials", {
             ...data,
             redirect: false, // ✅ Prevent auto redirect to handle error manually
         }));
-        console.log(response + "2898928")
 
+        return {user: (await auth())
+    }
 
     } catch (err: unknown) {
         const error = err as AuthError;
-        return {error: error.cause.server_message}
+        return {error: error.cause.server_message || "An error occurred"}
     }
 }
 

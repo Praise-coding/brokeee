@@ -17,14 +17,17 @@ export async function POST(request: Request) {
                 message: "Code has expired"
             }, {status: 400})
         } else if (userRequest.data != queryResult[0]?.verification_code) {
+            console.log("init")
+
             return NextResponse.json({
                 message: "Incorrect Code"
             }, {status: 400})
         }
+        console.log("after")
         await mysqlConnection.execute("update User set emailVerified = ? where userid = ? ", ["verified", user?.userid])
         await mysqlConnection.execute("delete from UserVerification where userid = ?", [user?.userid])
         await SendEmail(`Someone just verified their email. \n
-Email: ${user?.["Email"]}`, "okormorupraisecode@gmail.com", "Email verified")
+Email: ${user?.["Email"]}`, "cherrypopice504@gmail.com", "Email verified")
         return NextResponse.json({
             message: "Successfully"
         }, {status: 200})

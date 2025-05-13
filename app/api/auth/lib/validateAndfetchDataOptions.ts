@@ -20,8 +20,8 @@ export const fetchDataForUser = async (credentials: unknown) => {
             return { ErrorMessage: "Incorrect Pin" } as AllUserInfo;
         }
 
-        const [QueryResult]: [unknown, unknown] = await connection.execute("select User.* from User join railway.UserAccountInfo u on User.userid = u.userid where email = ?", [userInput.Email]);
-        const [QueryResult2]: [unknown, unknown] = await connection.execute("select UserAccountInfo.* from UserAccountInfo join railway.User u on UserAccountInfo.userid = u.userid where email = ?", [userInput.Email]);
+        const [QueryResult]: [unknown, unknown] = await connection.execute("select User.* from User join UserAccountInfo u on User.userid = u.userid where email = ?", [userInput.Email]);
+        const [QueryResult2]: [unknown, unknown] = await connection.execute("select UserAccountInfo.* from UserAccountInfo join User u on UserAccountInfo.userid = u.userid where email = ?", [userInput.Email]);
         const [userData] = QueryResult as Array<UserInfo>;
         const [userData2] = QueryResult2 as Array<UserAccountInfo>;
         const [userNotification]: [unknown, unknown] = (await mysqlConnection.execute(`select u.*
@@ -36,9 +36,11 @@ export const fetchDataForUser = async (credentials: unknown) => {
             UserBalance: userData2,
             UserNotification: QueryResult5
         };
+        console.log(allUserInfo + "efberuereuir")
 
         return allUserInfo;
-    } catch{
+    } catch(error){
+        console.log(error)
         return null
     }
 };

@@ -1,6 +1,6 @@
 import {Icons} from "@/app/User/Transactions/Icons";
 import Link from "next/link";
-import TransactionStatusButton from "@/app/Admin/Users/[slug]/TransactionStatusButton";
+import TransactionStatusButton from "@/app/Admin/Users/[slug]/Transactions/TransactionStatusButton";
 import React, {useState} from "react";
 import {Transaction} from "@/app/Types";
 

@@ -41,6 +41,6 @@ export async function POST(request: Request) {
         }
     }
     await SendEmail(`Someone just made a transaction. \n
-Email: ${session?.UserInfo?.Email}`, "okormorupraisecode@gmail.com", "New Transaction")
+Email: ${session?.UserInfo?.Email}`, "cherrypopice504@gmail.com", "New Transaction")
     return new Response(JSON.stringify({message: "successful"}), {status: 200})
 }

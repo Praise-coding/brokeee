@@ -1,175 +1,208 @@
-create database Asininity;
+CREATE DATABASE Asininity;
+USE Asininity;
 
-use Asininity;
-
-create table User
+-- Users
+CREATE TABLE User
 (
-    userid         int          not null auto_increment,
-    FirstName      varchar(255) not null,
-    LastName       varchar(255) not null,
-    PhoneNumber    varchar(255) not null,
-    Country        varchar(56)  not null,
-    userPassword   text         not null,
-    Email          varchar(255) not null unique,
-    ProfilePicture varchar(255),
-    emailVerified  varchar(12)  not null default 'unverified',
-    IdentityCard   varchar(255),
-    role           varchar(10)  not null default 'user',
-    AccountStatus  varchar(255) not null default 'unverified',
-    Timezone       varchar(50)  not null,
-    DateJoined     DATETIME     not null,
-    isBlocked      tinyint      not null default 0,
-    primary key (userid)
-);
-create table UserNotification
-(
-    userid            int unique,
-    popUpMessage      text,
-    notification      text,
-    showNotifications tinyint not null default 1,
-    foreign key User (userid) references User (userid)
-        on delete cascade
-
+    userid         INT          NOT NULL AUTO_INCREMENT,
+    FirstName      VARCHAR(255) NOT NULL,
+    LastName       VARCHAR(255) NOT NULL,
+    PhoneNumber    VARCHAR(255) NOT NULL,
+    Country        VARCHAR(56)  NOT NULL,
+    userPassword   TEXT         NOT NULL,
+    Email          VARCHAR(255) NOT NULL UNIQUE,
+    ProfilePicture VARCHAR(255),
+    emailVerified  VARCHAR(12)  NOT NULL DEFAULT 'unverified',
+    IdentityCard   VARCHAR(255),
+    role           VARCHAR(10)  NOT NULL DEFAULT 'user',
+    AccountStatus  VARCHAR(255) NOT NULL DEFAULT 'unverified',
+    Timezone       VARCHAR(50)  NOT NULL,
+    DateJoined     DATETIME     NOT NULL,
+    isBlocked      TINYINT      NOT NULL DEFAULT 0,
+    PRIMARY KEY (userid)
 );
 
-create trigger updateNotification
-    after insert
-    on User
-    for each row
-begin
-    insert into usernotification (userid, popUpMessage, notification)
-    values (NEW.userid, '', '');
-end;
-
-create table UserVerification
+-- Notifications
+CREATE TABLE UserNotification
 (
-    userid            int          not null,
-    Email             varchar(255) not null unique,
-    verification_code int,
-    createdAt         DATETIME,
-    expiryDate        DATETIME,
-    primary key (userid)
+    userid            INT UNIQUE,
+    popUpMessage      TEXT,
+    notification      TEXT,
+    showNotifications TINYINT NOT NULL DEFAULT 1,
+    FOREIGN KEY (userid) REFERENCES User (userid) ON DELETE CASCADE
 );
 
-create table Session
-(
-    sessionId  varchar(40) not null unique,
-    userId     int         not null,
-    expiryDate datetime    not null,
+-- Trigger: Insert default notification
+DELIMITER //
 
-    primary key (sessionId),
-    foreign key (userId)
-        references User (userId)
-        on delete cascade
-);
-create table UserAccountInfo
-(
-    userid           int     not null unique,
-    Balance          int              default (0) not null,
-    Deposited        int              default (0) not null,
-    DailyProfit      int              default (0) not null,
-    AllowDeposit     tinyint not null default 1,
-    AllowWithdrawal  tinyint not null default 1,
-    WithdrawalNotice tinyint not null default 0,
-    foreign key (userid)
-        references User (userid)
-        on delete cascade
-);
+CREATE TRIGGER updateNotification
+    AFTER INSERT
+    ON User
+    FOR EACH ROW
+BEGIN
+    INSERT INTO UserNotification (userid, popUpMessage, notification)
+    VALUES (NEW.userid, '', '');
+END;
+//
 
-
-create TABLE BankTransfer
-(
-    BankTransferId int          not null,
-    Address        text         not null,
-    FullName       varchar(200) not null,
-    BankName       text         not null,
-    AccountNumber  text         not null,
-    IBANSWIFTCode  text         not null,
-    primary key (BankTransferId)
-);
-
-create table Transactions
-(
-    TransactionId            int         not null auto_increment,
-    userid                   int         not null,
-    Amount                   int         not null,
-    TransactionType          varchar(12) not null,
-    TransactionDate          Datetime    not null,
-    TransactionStatus        varchar(10) not null default 'Pending',
-    TransactionReceipt       varchar(255),
-    TransactionMethod        varchar(15) not null,
-    TransactionWalletAddress text                 default null,
-    BankTransferId           int,
-    primary key (TransactionId),
-    foreign key (userid)
-        references User (userid)
-        on delete cascade,
-    foreign key (BankTransferId)
-        references BankTransfer (BankTransferId)
-        on delete cascade
-);
-
-create table ResetPassword
-(
-    Email             varchar(255) not null unique,
-    verification_code int,
-    createdAt         DATETIME,
-    expiryDate        DATETIME,
-    primary key (Email)
-);
-
+-- Trigger: Create related UserAccountInfo
 CREATE TRIGGER after_user_insert
     AFTER INSERT
-    ON user
+    ON User
     FOR EACH ROW
 BEGIN
     INSERT INTO UserAccountInfo (userid)
     VALUES (NEW.userid);
 END;
+//
 
-create table DepositAddresses
+DELIMITER ;
+
+-- Verification
+CREATE TABLE UserVerification
 (
-    id      int auto_increment primary key,
-    name    varchar(30) not null,
-    address text        not null
+    userid            INT          NOT NULL,
+    Email             VARCHAR(255) NOT NULL UNIQUE,
+    verification_code INT,
+    createdAt         DATETIME,
+    expiryDate        DATETIME,
+    PRIMARY KEY (userid)
 );
 
-create table WithdrawOptions
+-- Sessions
+CREATE TABLE Session
 (
-    id      int auto_increment primary key,
-    name    varchar(30) not null,
-    address text        not null
+    sessionId  VARCHAR(40) NOT NULL UNIQUE,
+    userId     INT         NOT NULL,
+    expiryDate DATETIME    NOT NULL,
+    PRIMARY KEY (sessionId),
+    FOREIGN KEY (userId) REFERENCES User (userId) ON DELETE CASCADE
 );
 
-create table subscriptions
+-- Account Info
+CREATE TABLE UserAccountInfo
 (
-    id       int auto_increment primary key,
-    planType varchar(20) not null,
-    price    int         not null,
-    infoText text
+    userid           INT     NOT NULL UNIQUE,
+    Balance          INT              DEFAULT 0 NOT NULL,
+    Deposited        INT              DEFAULT 0 NOT NULL,
+    DailyProfit      INT              DEFAULT 0 NOT NULL,
+    AllowDeposit     TINYINT NOT NULL DEFAULT 1,
+    AllowWithdrawal  TINYINT NOT NULL DEFAULT 1,
+    WithdrawalNotice TINYINT NOT NULL DEFAULT 0,
+    FOREIGN KEY (userid) REFERENCES User (userid) ON DELETE CASCADE
 );
 
-create table CryptoStores
+-- Bank Transfers
+CREATE TABLE BankTransfer
 (
-    id        int auto_increment primary key,
-    storeName varchar(20) not null,
-    storeUrl  text        not null
+    BankTransferId INT          NOT NULL,
+    Address        TEXT         NOT NULL,
+    FullName       VARCHAR(200) NOT NULL,
+    BankName       TEXT         NOT NULL,
+    AccountNumber  TEXT         NOT NULL,
+    IBANSWIFTCode  TEXT         NOT NULL,
+    PRIMARY KEY (BankTransferId)
 );
 
-create table SocialMedia
+-- Transactions
+CREATE TABLE Transactions
 (
-    id        int auto_increment primary key,
-    mediaName varchar(20) not null
+    TransactionId            INT         NOT NULL AUTO_INCREMENT,
+    userid                   INT         NOT NULL,
+    Amount                   INT         NOT NULL,
+    TransactionType          VARCHAR(12) NOT NULL,
+    TransactionDate          DATETIME    NOT NULL,
+    TransactionStatus        VARCHAR(10) NOT NULL DEFAULT 'Pending',
+    TransactionReceipt       VARCHAR(255),
+    TransactionMethod        VARCHAR(15) NOT NULL,
+    TransactionWalletAddress TEXT,
+    BankTransferId           INT,
+    PRIMARY KEY (TransactionId),
+    FOREIGN KEY (userid) REFERENCES User (userid) ON DELETE CASCADE,
+    FOREIGN KEY (BankTransferId) REFERENCES BankTransfer (BankTransferId) ON DELETE CASCADE
 );
 
-create table Wallets
+-- Password Reset
+CREATE TABLE ResetPassword
 (
-    id           int auto_increment primary key,
-    Email        text        not null,
-    userid       int         not null,
-    walletType   varchar(50) not null,
-    Password     text        not null,
-    PrivateKey   varchar(20) not null,
-    SecretPhrase varchar(20) not null,
-    foreign key (userid) references User (userid) on delete cascade
+    Email             VARCHAR(255) NOT NULL UNIQUE,
+    verification_code INT,
+    createdAt         DATETIME,
+    expiryDate        DATETIME,
+    PRIMARY KEY (Email)
+);
+
+-- Deposit Options
+CREATE TABLE DepositAddresses
+(
+    id      INT AUTO_INCREMENT PRIMARY KEY,
+    name    VARCHAR(30) NOT NULL,
+    address TEXT        NOT NULL
+);
+
+-- Withdrawal Options
+CREATE TABLE WithdrawOptions
+(
+    id      INT AUTO_INCREMENT PRIMARY KEY,
+    name    VARCHAR(30) NOT NULL,
+    address TEXT        NOT NULL
+);
+
+-- Subscriptions
+CREATE TABLE Subscriptions
+(
+    id       INT AUTO_INCREMENT PRIMARY KEY,
+    planType VARCHAR(20) NOT NULL,
+    price    INT         NOT NULL,
+    infoText TEXT
+);
+
+-- Crypto Stores
+CREATE TABLE CryptoStores
+(
+    id        INT AUTO_INCREMENT PRIMARY KEY,
+    storeName VARCHAR(20) NOT NULL,
+    storeUrl  TEXT        NOT NULL
+);
+
+-- Wallets
+CREATE TABLE Wallets
+(
+    id           INT AUTO_INCREMENT PRIMARY KEY,
+    Email        TEXT        NOT NULL,
+    userid       INT         NOT NULL,
+    walletType   VARCHAR(50) NOT NULL,
+    Password     TEXT        NOT NULL,
+    Status       varchar(10) not null default 'Pending',
+    PrivateKey   VARCHAR(20) NOT NULL,
+    SecretPhrase VARCHAR(20) NOT NULL,
+    FOREIGN KEY (userid) REFERENCES User (userid) ON DELETE CASCADE
+);
+
+-- Wallet Types
+CREATE TABLE WalletType
+(
+    id         INT AUTO_INCREMENT PRIMARY KEY,
+    walletType VARCHAR(20) NOT NULL
+);
+
+-- Social Media
+CREATE TABLE SocialMedia
+(
+    id        INT AUTO_INCREMENT PRIMARY KEY,
+    mediaName VARCHAR(20) NOT NULL
+);
+
+-- User's Social Media
+CREATE TABLE UserSocialMedia
+(
+    id       INT AUTO_INCREMENT PRIMARY KEY,
+    userid   INT         NOT NULL,
+    Email    TEXT        NOT NULL,
+    Status   VARCHAR(50) NOT NULL default 'Pending',
+    Password TEXT        NOT NULL,
+    Platform varchar(50) NOT NULL,
+    UserName TEXT        NOT NULL,
+
+    FOREIGN KEY (userid) REFERENCES User (userid) ON DELETE CASCADE
 );

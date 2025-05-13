@@ -1,16 +1,16 @@
-import { ConnectionOptions } from "mysql2";
-import mysql, { Connection } from "mysql2/promise";
+import {ConnectionOptions} from "mysql2";
+import mysql, {Connection} from "mysql2/promise";
 
 const connectionOption: ConnectionOptions = {
-    uri: "mysql://root:MLYoRKsyFgdogKiChxilRWEyuuSASYhy@centerbeam.proxy.rlwy.net:12545/railway",
+    // host: 'mysql.railway.internal',
+    // user: "root",
+    // database: "railway",
+    // password:"TbvVOsIbqZxLSJRFTLGyocBmCcBstysf",
+    // port: 3306,
+    uri:"mysql://root:TbvVOsIbqZxLSJRFTLGyocBmCcBstysf@centerbeam.proxy.rlwy.net:10530/railway",
     waitForConnections: true,
     connectionLimit: 10, // tweak this
     queueLimit: 0
-
 }
 
-
-
 export const mysqlConnection: Connection = mysql.createPool(connectionOption)
-
-

@@ -2,7 +2,7 @@
 import InputAndInputName from "@/app/(auth)/formUi/inputAndInputName";
 import Link from "next/link";
 import {useForm} from "react-hook-form";
-import {SignupFormInput} from "@/app/Types";
+import {SignupFormInput, User} from "@/app/Types";
 import {SignIn} from "@/app/api/auth/lib/signIn";
 import {Toaster} from "@/app/(auth)/formUi/Toast";
 import {useRouter} from "next/navigation";
@@ -23,10 +23,16 @@ export default function Page() {
     async function submitForm(data: SignupFormInput) {
         setLoading(true)
         const response = (await SignIn(data))
-        if (response?.error) {
-            Toaster("error", response?.error)
+
+        if (response?.error || !response) {
+            Toaster("error", response?.error || "An error occured")
             setLoading(false)
         } else {
+            console.log(response.user)
+            if((response.user as User)?.user.UserInfo?.emailVerified == "unverified"){
+                router.push("User/VerifyEmail/SendVerificationCode")
+                return;
+            }
             router.push("User/Dashboard")
         }
     }

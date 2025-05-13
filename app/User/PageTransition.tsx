@@ -8,7 +8,7 @@ interface PageTransitionProps {
     children: React.ReactNode;
 }
 
-export default function PageTransition({ children }: PageTransitionProps) {
+export default function PageTransition({children}: PageTransitionProps) {
     const pathname = usePathname();
     const [displayChildren, setDisplayChildren] = useState(children);
 
@@ -25,12 +25,11 @@ export default function PageTransition({ children }: PageTransitionProps) {
             <AnimatePresence mode="wait">
 
                 <motion.div
-
                     key={pathname}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{opacity: 0, y: 10}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -10}}
+                    transition={{duration: 0.3}}
                 >
                     {displayChildren}
                 </motion.div>

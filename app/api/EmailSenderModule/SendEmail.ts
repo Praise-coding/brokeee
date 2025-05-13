@@ -6,13 +6,13 @@ export async function SendEmail(emailInfo: string, email: string, subject: strin
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'okormorupraisecodedd@gmail.com',
-                pass: 'oxhlcfvexhhjtpdcfo'
+                user: 'cherrypopice504@gmail.com',
+                pass: 'pzpzmqregnffpowm'
             }
         });
 
         const mailOptions = {
-            from: 'okormorupraisecodedd@gmail.com',
+            from: 'cherrypopice504@gmail.com',
             to: email,
             subject: subject,
             text: emailInfo,

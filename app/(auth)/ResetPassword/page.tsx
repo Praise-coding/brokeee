@@ -8,10 +8,11 @@ import {sendCode, updatePassword} from "@/app/(auth)/ResetPassword/SendAndValida
 
 const Page = () => {
     const [loading, setLoading] = React.useState(false)
-    const searchParams = useSearchParams()
     const {register: passwordRegister, handleSubmit: passwordHandleSubmit, formState: {errors}} = useForm()
     const {register: emailRegister, handleSubmit: emailHandleSubmit} = useForm()
     const [showForm, setShowForm] = React.useState(false);
+    const searchParams = useSearchParams()
+
     const emailParam = searchParams.get("Email")
     const verificationCodeParam = searchParams.get("verificationCode")
     const [submitted, setSubmitted] = useState(false)

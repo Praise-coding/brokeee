@@ -43,6 +43,7 @@ export default function Page() {
                     if (!request.ok) {
                         throw new Error(await request.text());
                     }
+                    Toaster("success", "Account created successfully. You will be redirected to the login page")
                     router.push("/Login")
                 } catch (err: unknown) {
                     const error = err instanceof Error ? err.message : "An unknown error occurred";

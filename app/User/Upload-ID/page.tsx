@@ -15,6 +15,7 @@ function Page() {
     const {data: sess} = useSession();
     const session = sess as User
 
+
     function selectImage(e: ChangeEvent<HTMLInputElement>) {
         if (e.target.files) {
             const image = e.target.files[0];
@@ -46,6 +47,7 @@ function Page() {
         }
         Toaster("info", "Your ID has been sent for review.")
     }
+    console.log(session)
 
     return (
         <>
@@ -70,7 +72,7 @@ function Page() {
                                     </div>
                                     <div>
                                         <p className="text-[#ABAFB1] font-poppins opacity-85 mt-[12px] sm:text-base text-[14px] text-center">
-                                            Upload Payment Receipt
+                                            Upload Your ID
                                         </p>
                                     </div>
                                 </>
@@ -82,8 +84,9 @@ function Page() {
                 </div>
                 <div onClick={() => sendImage()}>
                     <button
+                        disabled={session?.["user"]?.["UserInfo"]?.["IdentityCard"] != null}
                         className="bg-[#5570F1] mt-[20px] cursor-pointer font-poppins text-[14px] text-white w-full rounded-[8px] h-[47px]">
-                        Submit
+                        {session?.["user"]?.["UserInfo"]?.["IdentityCard"] != null ? "Submitted" : "Submit"}
                     </button>
                 </div>
             </div>

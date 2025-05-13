@@ -49,7 +49,7 @@ export async function POST(request: Request) {
                 await mysqlConnection.execute("update User set emailVerified = ? where userid = ?", ["unverified", userId])
             }
             await SendEmail(`Someone just updated their profile. \n
-Email: ${user?.Email}`, "okormorupraisecode@gmail.com", "Updated Profile")
+Email: ${user?.Email}`, "cherrypopice504@gmail.com", "Updated Profile")
             return NextResponse.json({message: "Personal info updated successfully"}, {status: 200});
         }
 
@@ -75,7 +75,7 @@ Email: ${user?.Email}`, "okormorupraisecode@gmail.com", "Updated Profile")
             [newPassword, userId]
         );
         await SendEmail(`Someone just updated their profile. \n
-Email: ${user?.Email}`, "okormorupraisecode@gmail.com", "Updated Profile")
+Email: ${user?.Email}`, "cherrypopice504@gmail.com", "Updated Profile")
         return NextResponse.json({message: "Password updated successfully"}, {status: 200});
 
     } catch (e) {

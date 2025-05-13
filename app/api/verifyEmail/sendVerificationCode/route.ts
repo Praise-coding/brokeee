@@ -24,6 +24,7 @@ export async function POST(request: Request) {
 
         const [queryResults]: [unknown, unknown] = await mysqlConnection.execute("select * from UserVerification where userid = ?", [user?.userid])
         const valueExists = queryResults as []
+
         if (valueExists?.length > 0) {
             await mysqlConnection.execute("update UserVerification set email= ?, verification_code= ?, createdAt= ?, expiryDate = ? where userid = ?", [user?.Email, randomNumber, createdDate.toISOString().slice(0, 19).replace("T", " "), expiryDate, user?.userid])
         } else {
@@ -33,8 +34,11 @@ export async function POST(request: Request) {
             ])
         }
 
+
         if (user?.Email) {
-            await SendEmail(`Verification code: ${randomNumber}`, user?.Email, "Verification your email")
+            const url = `http://localhost:3000/User/VerifyEmail/SendVerificationCode?Email=${user?.Email}&verificationCode=${randomNumber}`
+            const ee = await SendEmail(`Click on the link to verify your email: ${url}`, user?.Email, "Verify your email")
+            console.log(ee)
         }
     } catch (e) {
         throw e

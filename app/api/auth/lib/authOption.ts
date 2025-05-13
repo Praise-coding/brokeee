@@ -17,10 +17,12 @@ export const {auth, handlers, signIn, signOut} = NextAuth({
                         return null
                     }
 
-                    return await fetchDataForUser({
+                    const userData = await fetchDataForUser({
                         Email: credentials.Email.toString(),
                         Password: credentials.Password.toString(),
                     });
+                    console.log(JSON.stringify(userData))
+                    return userData
                 }
             }),
         ],

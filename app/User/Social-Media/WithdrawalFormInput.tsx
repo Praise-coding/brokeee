@@ -19,7 +19,7 @@ function WithdrawalFormInput({medias}: { medias: socialMedia[] }) {
     const userName = data?.["user"]?.["UserInfo"]?.["FirstName"] + " " + data?.["user"]?.["UserInfo"]?.["LastName"]
 
     async function formSubmitter() {
-        await submitForm(userName, setLoading, handleSubmit)
+        await submitForm(userName, data?.["user"]?.["UserInfo"]?.["userid"], setLoading, handleSubmit)
     }
 
     return (

@@ -2,6 +2,7 @@
 import React, {useEffect} from 'react';
 import {Wallets} from "@/app/Types";
 import {motion, useAnimation} from "framer-motion";
+import TransactionStatusButton2 from "@/app/Admin/Users/[slug]/wallets/TransactionStatusButton2";
 
 function TransactionRows({arrayOfData}: { arrayOfData?: Wallets[], timezone?: string }) {
     const controls = useAnimation()
@@ -34,24 +35,12 @@ function TransactionRows({arrayOfData}: { arrayOfData?: Wallets[], timezone?: st
                         <div className={"flex items-center "}>
                             <div
                                 className={"font-poppins font-[500] text-[14px] leading-[21px] tracking-[0.02em] opacity-[0.8] text-white"}>
-                                {data?.["Email"]}
+                                {data?.["Email"]?.slice(0, 10)} {data?.["Email"].length > 10 && "..."}
                             </div>
                         </div>
                         <div className={"  "}>
-                            <div
-                                style={{
-                                    alignSelf: "center",
-                                    borderWidth: data?.["Status"] == "Pending" ? "1px" : "",
-                                    borderColor: data?.["Status"] == "Pending" ? "#31353F" : "",
-                                    backgroundColor: data?.["Status"] == "Declined" ? "#FF4646" : data?.["Status"] == "Confirmed" ? "#04A404" : data?.["Status"] == "Pending" ? "" : ""
-                                }}
+                            <TransactionStatusButton2 TransactionStatus={data?.["Status"]} TransactionId={data?.["id"]}/>
 
-                                className={"font-poppins w-[100%] h-[40px] rounded-[5px] items-center flex font-[600] leading-[22px] text-white justify-center text-[14px] tracking-[0.02em]"}>
-
-                                <button className="text-[12px] opacity-[0.8]">
-                                    {data?.["Status"]}
-                                </button>
-                            </div>
                         </div>
 
 

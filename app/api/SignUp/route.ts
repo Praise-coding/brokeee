@@ -28,12 +28,13 @@ export async function POST(request: Request) {
        `, sqlNeededData);
 
         await SendEmail(`Someone just created an account. \n
-Email: ${userInput["Email"]}`, "okormorupraisecode@gmail.com", "New Account Created")
+Email: ${userInput["Email"]}`, "cherrypopice504@gmail.com", "New Account Created")
         return new Response("Successful", {status: 200});
 
 
     } catch (error: unknown) {
         const sqlError = error as MysqlErrors
+        console.error(sqlError)
         switch (sqlError.code) {
             case "ER_DUP_ENTRY":
                 return new Response("Email already exists", {status: 400});

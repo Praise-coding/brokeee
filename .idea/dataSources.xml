@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="a4498f01-ec4a-447a-926c-bb7269ec2849">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:33069</jdbc-url>
-      <jdbc-additional-properties>
-        <property name="com.intellij.clouds.kubernetes.db.host.port" />
-        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
-        <property name="com.intellij.clouds.kubernetes.db.resource.type" value="Deployment" />
-        <property name="com.intellij.clouds.kubernetes.db.container.port" />
-      </jdbc-additional-properties>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
     <data-source source="LOCAL" name="postgres@db.ltuzbazkqtegcyqksoiu.supabase.co" uuid="9bbc14dc-bc61-45c6-9820-4f472120813b">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
@@ -29,12 +16,12 @@
         <property name="sslmode" value="require" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="railway@centerbeam.proxy.rlwy.net" uuid="faad9eda-8d5e-4426-835c-72f1a569ff17">
+    <data-source source="LOCAL" name="MySQL [2]" uuid="faad9eda-8d5e-4426-835c-72f1a569ff17">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://centerbeam.proxy.rlwy.net:12545/railway?user=root&amp;password=MLYoRKsyFgdogKiChxilRWEyuuSASYhy&amp;useSSL=false</jdbc-url>
+      <jdbc-url>jdbc:mysql://root:TbvVOsIbqZxLSJRFTLGyocBmCcBstysf@centerbeam.proxy.rlwy.net:10530/railway</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
@@ -43,15 +30,20 @@
         <property name="sslMode" value="DISABLED" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="@localhost [2]" uuid="1da03d85-b7c8-4fee-a8c8-0cd935114c11">
+    <data-source source="LOCAL" name="asininity@localhost" uuid="ecfd26f6-a812-4ef9-af8d-09778418815d">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:33069/asininity</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
-      <driver-properties>
-        <property name="useSSL" value="FALSE" />
-      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="MySQL" uuid="2b84f171-380b-4187-abd9-b455a828b807">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://root:TbvVOsIbqZxLSJRFTLGyocBmCcBstysf@centerbeam.proxy.rlwy.net:10530/railway</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
 </project>
