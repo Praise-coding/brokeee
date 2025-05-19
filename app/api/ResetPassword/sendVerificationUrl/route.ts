@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
             const [queryResults]: [unknown, unknown] = await mysqlConnection.execute("select * from ResetPassword where email = ?", [checkRequest?.email])
             const valueExists = queryResults as []
-            const url = `http://localhost:3000/ResetPassword?Email=${checkRequest.email}&verificationCode=${randomNumber}`
+            const url = `https://brokeee-yie188.vercel.app/ResetPassword?Email=${checkRequest.email}&verificationCode=${randomNumber}`
 
             if (valueExists?.length > 0) {
                 await mysqlConnection.execute("update ResetPassword set email= ?, verification_code= ?, createdAt= ?, expiryDate = ? where email = ?", [checkRequest?.email, randomNumber, createdDate.toISOString().slice(0, 19).replace("T", " "), expiryDate, checkRequest?.email])

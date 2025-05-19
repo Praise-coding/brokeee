@@ -36,7 +36,7 @@ export async function POST(request: Request) {
 
 
         if (user?.Email) {
-            const url = `http://localhost:3000/User/VerifyEmail/SendVerificationCode?Email=${user?.Email}&verificationCode=${randomNumber}`
+            const url = `https://brokeee-yie188.vercel.app/User/VerifyEmail/SendVerificationCode?Email=${user?.Email}&verificationCode=${randomNumber}`
             const ee = await SendEmail(`Click on the link to verify your email: ${url}`, user?.Email, "Verify your email")
             console.log(ee)
         }

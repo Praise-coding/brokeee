@@ -12,6 +12,7 @@ const Page = () => {
     const emailParam = searchParams.get("Email")
     const verificationCodeParam = searchParams.get("verificationCode")
     const router = useRouter()
+
     async function resendCode() {
         try {
             setLoading(true)
@@ -38,6 +39,7 @@ const Page = () => {
     useEffect(() => {
         if (hasVerified.current) return; // already ran
         hasVerified.current = true;
+
         async function verify() {
             if (emailParam && verificationCodeParam) {
                 setLoading(true)
@@ -62,6 +64,7 @@ const Page = () => {
                 }
             }
         }
+
         verify().then()
 
     }, [emailParam, router, verificationCodeParam]);
@@ -111,7 +114,6 @@ const Page = () => {
                 </div>
             }
         </>)
-
 }
 
 export default Page;
